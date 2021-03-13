@@ -23,8 +23,7 @@
 			<column name="created_at" prior="added_at" type="date" jt="91" mandatory="y" >
 				<comment><![CDATA[Date added to library]]></comment>
 			</column>
-			<column name="isbn10" type="varchar" length="10" jt="12" />
-			<column name="isbn13" type="varchar" length="13" jt="12" />
+			<column name="isbn" prior="isbn13" type="varchar" length="13" jt="12" />
 			<column name="pagecount" type="integer" jt="4" />
 			<column name="preview_url" type="varchar" jt="12" />
 			<column name="status" prior="status_id" type="varchar" length="10" jt="12" mandatory="y" >
