@@ -1,0 +1,34 @@
+admins:
+server:
+  servlet:
+    context-path: /
+    encoding:
+      forceResponse: true
+      forceRequest: true
+      charset: UTF-8
+      enabled: true
+spring:
+  security.oauth2.client.registration:
+    google:
+      client-id:
+      client-secret:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/library
+    username: postgres
+    password: postgres
+
+n2o:
+  api:
+    button:
+      disable_on_empty_model: false
+  i18n:
+    default-locale: en
+  header.id: library
+  config:
+    monitoring:
+      enabled: true
+  access:
+    schema.id: library
+
+

@@ -40,23 +40,12 @@
 				<column name="id" />
 			</index>
 		</table>
-		<table name="member" prior="reader" >
-			<column name="id" type="serial" jt="4" mandatory="y" />
-			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
-			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
-			<column name="avatar" type="text" jt="12" />
-			<index name="pk_reader_id" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="reader" prior="booking" >
+		<table name="booking" prior="reading" >
 			<column name="id" type="serial" jt="4" mandatory="y" />
 			<column name="member_id" prior="reader_id" type="integer" jt="4" mandatory="y" />
 			<column name="book_id" type="integer" jt="4" mandatory="y" />
 			<column name="booking_from" prior="planned_from" type="date" jt="91" />
 			<column name="booking_until" prior="planned_until" type="date" jt="91" />
-			<column name="actual_from" type="date" jt="91" />
-			<column name="actual_until" type="date" jt="91" />
 			<column name="created_at" prior="booking_date" type="date" jt="91" mandatory="y" />
 			<index name="pk_booking_id" unique="PRIMARY_KEY" >
 				<column name="id" />
@@ -67,6 +56,29 @@
 			<fk name="fk_booking_reader" to_schema="library" to_table="member" delete_action="cascade" >
 				<fk_column name="member_id" pk="id" />
 			</fk>
+		</table>
+		<table name="haveread" prior="wish_0" >
+			<column name="member_id" type="integer" jt="4" mandatory="y" />
+			<column name="book_id" type="integer" jt="4" mandatory="y" />
+			<index name="idx_wish_0" unique="PRIMARY_KEY" >
+				<column name="member_id" />
+				<column name="book_id" />
+			</index>
+			<fk name="fk_wish_member_0" to_schema="library" to_table="member" delete_action="cascade" >
+				<fk_column name="member_id" pk="id" />
+			</fk>
+			<fk name="fk_wish_book_0" to_schema="library" to_table="book" delete_action="cascade" >
+				<fk_column name="book_id" pk="id" />
+			</fk>
+		</table>
+		<table name="member" prior="reader" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="avatar" type="text" jt="12" />
+			<index name="pk_reader_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
 		</table>
 		<table name="review" prior="tbl" >
 			<column name="id" type="serial" jt="4" mandatory="y" />
@@ -86,7 +98,7 @@
 				<fk_column name="member_id" pk="id" />
 			</fk>
 		</table>
-		<table name="wish" prior="wishes" >
+		<table name="wanttoread" prior="wish" >
 			<column name="member_id" type="integer" jt="4" mandatory="y" />
 			<column name="book_id" type="integer" jt="4" mandatory="y" />
 			<index name="idx_wish" unique="PRIMARY_KEY" >
@@ -103,10 +115,11 @@
 	</schema>
 	<layout name="Default Layout" id="Layout_1782" show_relation="columns" >
 		<entity schema="library" name="book" color="C1D8EE" x="144" y="144" />
+		<entity schema="library" name="booking" color="C1D8EE" x="320" y="320" />
+		<entity schema="library" name="haveread" color="3986C1" x="320" y="624" />
 		<entity schema="library" name="member" color="C1D8EE" x="544" y="304" />
-		<entity schema="library" name="reader" color="C1D8EE" x="320" y="320" />
 		<entity schema="library" name="review" color="C1D8EE" x="320" y="128" />
-		<entity schema="library" name="wish" color="C1D8EE" x="320" y="528" />
+		<entity schema="library" name="wanttoread" color="C1D8EE" x="320" y="528" />
 		<callout x="48" y="48" pointer="Round" >
 			<comment><![CDATA[DbSchema is in offline mode.
 New designed tables will be saved to model file and later can be create in any database.

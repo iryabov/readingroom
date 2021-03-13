@@ -11,16 +11,31 @@
 	<groupId>com.github.iryabov</groupId>
 	<artifactId>readingroom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>readingroom</name>
+	<name>reading-room</name>
 	<description>Home or corporate library to rate, review and book</description>
 	<properties>
 		<java.version>11</java.version>
 		<kotlin.version>1.4.30</kotlin.version>
 	</properties>
+
 	<dependencies>
+		<dependency>
+			<groupId>net.n2oapp.framework</groupId>
+			<artifactId>n2o-spring-boot-starter</artifactId>
+			<version>7.14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.n2oapp.framework</groupId>
+			<artifactId>n2o-web</artifactId>
+			<version>7.14.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
@@ -60,7 +75,13 @@
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>
+						<plugin>all-open</plugin>
 					</compilerPlugins>
+					<pluginOptions>
+						<option>all-open:annotation=javax.persistence.Entity</option>
+						<option>all-open:annotation=javax.persistence.Embeddable</option>
+						<option>all-open:annotation=javax.persistence.MappedSuperclass</option>
+					</pluginOptions>
 				</configuration>
 				<dependencies>
 					<dependency>
