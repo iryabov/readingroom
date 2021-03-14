@@ -21,9 +21,7 @@ class Book(
         var language: Language? = null,
         var published: LocalDate? = null,
         var publisher: String? = null,
-        var coverLg: String? = null,
-        var coverMd: String? = null,
-        var coverSm: String? = null,
+        var cover: String? = null,
         @Type(type = "list-array")
         @Column(name = "categories", columnDefinition = "varchar[]")
         var categories: List<String> = emptyList(),
