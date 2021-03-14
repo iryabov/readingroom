@@ -29,12 +29,6 @@
 			<column name="status" prior="status_id" type="varchar" length="10" jt="12" mandatory="y" >
 				<comment><![CDATA[Status of the book (added, ordered, available, rented, deleted)]]></comment>
 			</column>
-			<column name="format" prior="type" type="varchar" length="10" jt="12" >
-				<comment><![CDATA[Format of the book (book, ebook, audio)]]></comment>
-			</column>
-			<column name="place" type="varchar" jt="12" >
-				<comment><![CDATA[Where is this book]]></comment>
-			</column>
 			<index name="pk_book_id" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>

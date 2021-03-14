@@ -11,32 +11,30 @@ import javax.persistence.*
 @TypeDef(
         name = "list-array",
         typeClass = ListArrayType::class
-        )
-data class Book(
+)
+class Book(
         var title: String,
         @Type(type = "list-array")
         @Column(name = "authors", columnDefinition = "varchar[]")
         var authors: List<String>,
-        var description: String?,
-        var language: Language?,
-        var published: LocalDate?,
-        var publisher: String?,
-        var coverLg: String?,
-        var coverMd: String?,
-        var coverSm: String?,
+        var description: String? = null,
+        var language: Language? = null,
+        var published: LocalDate? = null,
+        var publisher: String? = null,
+        var coverLg: String? = null,
+        var coverMd: String? = null,
+        var coverSm: String? = null,
         @Type(type = "list-array")
         @Column(name = "categories", columnDefinition = "varchar[]")
-        var categories: List<String>?,
+        var categories: List<String> = emptyList(),
         @ManyToOne
         @JoinColumn(name = "created_by")
         var createdBy: Member,
-        var createdAt: LocalDate,
-        var isbn: String?,
-        var pagecount: Int?,
-        var previewUrl: String?,
-        var status: BookStatus,
-        var format: BookFormat,
-        var place: String?,
+        var createdAt: LocalDate = LocalDate.now(),
+        var isbn: String? = null,
+        var pagecount: Int? = null,
+        var previewUrl: String? = null,
+        var status: BookStatus = BookStatus.ADDED,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id", columnDefinition = "serial")
         var id: Int? = null
