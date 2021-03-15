@@ -9,6 +9,5 @@ class Member(
         var email: String,
         var avatar: String? = null,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id", columnDefinition = "serial")
         var id: Int? = null
 )

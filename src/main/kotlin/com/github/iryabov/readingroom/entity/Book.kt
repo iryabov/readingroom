@@ -34,6 +34,17 @@ class Book(
         var previewUrl: String? = null,
         var status: BookStatus = BookStatus.ADDED,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id", columnDefinition = "serial")
-        var id: Int? = null
+        var id: Int? = null,
+        @ManyToMany(targetEntity = Member::class)
+        @JoinTable(
+                name = "wanttoread",
+                joinColumns = [JoinColumn(name = "member_id")],
+                inverseJoinColumns = [JoinColumn(name = "book_id")])
+        var wantToRead: Set<Member>? = emptySet(),
+        @ManyToMany(targetEntity = Member::class)
+        @JoinTable(
+                name = "haveread",
+                joinColumns = [JoinColumn(name = "member_id")],
+                inverseJoinColumns = [JoinColumn(name = "book_id")])
+        var haveRead: Set<Member>? = emptySet()
 )

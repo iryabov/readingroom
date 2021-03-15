@@ -23,6 +23,7 @@ class RepositoriesTest @Autowired constructor(
         val igor = memberRepo.save(Member(
                 email = "to.iryabov@gmail.com",
                 name = "Igor"))
+        //create
         val harry = bookRepo.save(Book(
                 title = "Harry Potter and Philosopher's stone",
                 authors = listOf("Joanne Rowling"),
@@ -32,10 +33,22 @@ class RepositoriesTest @Autowired constructor(
                 categories = listOf("Adventure", "Fantasy"),
                 createdBy = igor
         ))
+
+        //find
         assertThat(bookRepo.findById(igor.id!!).isPresent).isTrue
         assertThat(bookRepo.findById(harry.id!!).isPresent).isTrue
-        val found = bookRepo.findById(harry.id!!).get()
+        var found = bookRepo.findById(harry.id!!).get()
         assertThat(found.categories).allMatch { it == "Adventure" || it == "Fantasy" }
+
+//        //update
+//        harry.haveRead = setOf(igor)
+//        harry.wantToRead = setOf(igor)
+//        bookRepo.save(harry)
+//        found = bookRepo.findById(harry.id!!).get()
+//        assertThat(found.wantToRead).allMatch { it.id == igor.id }
+//        assertThat(found.haveRead).allMatch { it.id == igor.id }
+
+        //delete
         bookRepo.delete(harry)
         assertThat(bookRepo.findById(harry.id!!).isEmpty).isTrue
     }

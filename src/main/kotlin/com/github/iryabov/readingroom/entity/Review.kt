@@ -15,6 +15,5 @@ class Review(
         var rate: Int? = null,
         var createdAt: LocalDate = LocalDate.now(),
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id", columnDefinition = "serial")
         var id: Int? = null
 )
