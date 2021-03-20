@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+             name="Members">
+    <table object-id="member" query-id="members" selection="none">
+        <toolbar place="topLeft">
+            <button label="Add" color="primary">
+                <show-modal page-id="memberForm" route="/create" upload="defaults"
+                            page-name="Add new member" submit-operation-id="create"/>
+            </button>
+        </toolbar>
+        <columns>
+            <column id="avatar" text-field-id="name" label="Avatar">
+                <image data="{avatar}" shape="rounded" width="30"/>
+            </column>
+            <column text-field-id="email" label="Email"/>
+            <column text-field-id="name" label="Name"/>
+            <column id="toolbar" label="" width="100px">
+                <toolbar>
+                    <button id="update" icon="fa fa-pencil">
+                        <show-modal page-id="memberForm" route="/:id/update"
+                                    page-name="Edit member" submit-operation-id="update">
+                            <path-param name="id" value="{id}"/>
+                        </show-modal>
+                    </button>
+                    <button id="delete" icon="fa fa-trash" confirm="true">
+                        <invoke operation-id="delete"/>
+                    </button>
+                </toolbar>
+            </column>
+        </columns>
+    </table>
+</simple-page>

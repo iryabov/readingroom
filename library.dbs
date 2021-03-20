@@ -13,9 +13,7 @@
 			<column name="publisher" prior="house_id" type="varchar" jt="12" >
 				<comment><![CDATA[Publishing house]]></comment>
 			</column>
-			<column name="cover_lg" prior="cover_lg_url" type="text" jt="12" />
-			<column name="cover_md" prior="cover_md_url" type="text" jt="12" />
-			<column name="cover_sm" prior="cover_sm_url" type="text" jt="12" />
+			<column name="cover" prior="cover_lg" type="text" jt="12" />
 			<column name="categories" prior="tags" type="varchar[]" jt="2003" />
 			<column name="created_by" prior="added_by" type="integer" jt="4" mandatory="y" >
 				<comment><![CDATA[The reader who added the book]]></comment>
@@ -73,13 +71,27 @@
 				<column name="id" />
 			</index>
 		</table>
+		<table name="rating" prior="tbl" >
+			<column name="id" type="serial" jt="4" mandatory="y" />
+			<column name="book_id" type="integer" jt="4" mandatory="y" />
+			<column name="member_id" type="integer" jt="4" mandatory="y" />
+			<column name="rate" type="integer" jt="4" mandatory="y" />
+			<column name="created_at" type="date" jt="91" mandatory="y" />
+			<index name="pk_rating_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_rating_book" to_schema="library" to_table="book" >
+				<fk_column name="book_id" pk="id" />
+			</fk>
+			<fk name="fk_rating_member" to_schema="library" to_table="member" >
+				<fk_column name="member_id" pk="id" />
+			</fk>
+		</table>
 		<table name="review" prior="tbl" >
 			<column name="id" type="serial" jt="4" mandatory="y" />
 			<column name="book_id" type="integer" jt="4" mandatory="y" />
 			<column name="member_id" prior="reader_id" type="integer" jt="4" mandatory="y" />
-			<column name="summary" type="varchar" length="200" jt="12" />
 			<column name="description" prior="detail" type="text" jt="12" mandatory="y" />
-			<column name="rate" type="integer" jt="4" />
 			<column name="created_at" type="date" jt="91" mandatory="y" />
 			<index name="pk_review_id" unique="PRIMARY_KEY" >
 				<column name="id" />
@@ -108,11 +120,12 @@
 	</schema>
 	<layout name="Default Layout" id="Layout_1782" show_relation="columns" >
 		<entity schema="library" name="book" color="C1D8EE" x="144" y="144" />
-		<entity schema="library" name="booking" color="C1D8EE" x="320" y="320" />
-		<entity schema="library" name="haveread" color="3986C1" x="320" y="624" />
+		<entity schema="library" name="booking" color="C1D8EE" x="304" y="272" />
+		<entity schema="library" name="haveread" color="3986C1" x="304" y="528" />
 		<entity schema="library" name="member" color="C1D8EE" x="544" y="304" />
-		<entity schema="library" name="review" color="C1D8EE" x="320" y="128" />
-		<entity schema="library" name="wanttoread" color="C1D8EE" x="320" y="528" />
+		<entity schema="library" name="rating" color="C1D8EE" x="304" y="624" />
+		<entity schema="library" name="review" color="C1D8EE" x="304" y="128" />
+		<entity schema="library" name="wanttoread" color="C1D8EE" x="304" y="432" />
 		<callout x="48" y="48" pointer="Round" >
 			<comment><![CDATA[DbSchema is in offline mode.
 New designed tables will be saved to model file and later can be create in any database.

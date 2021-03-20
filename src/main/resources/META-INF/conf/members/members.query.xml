@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
+       object-id="member">
+    <list>
+        <java method="findAll">
+
+        </java>
+    </list>
+    <fields>
+        <field id="id">
+            <select mapping="['id']">m.id as id</select>
+            <filters>
+                <eq filter-id="id">m.id = :id</eq>
+            </filters>
+        </field>
+        <field id="email">
+            <select mapping="['email']">m.email as email</select>
+            <filters>
+                <eq filter-id="email">m.email = :email</eq>
+            </filters>
+        </field>
+        <field id="name">
+            <select mapping="['name']">m.name as name</select>
+        </field>
+        <field id="avatar">
+            <select mapping="['avatar']">m.avatar as avatar</select>
+        </field>
+    </fields>
+</query>
