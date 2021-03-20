@@ -29,5 +29,19 @@
                        normalize="T(com.github.iryabov.readingroom.entity.BookStatus).valueOf(#this)"/>
             </in>
         </operation>
+        <operation id="rateBook">
+            <invocation>
+                <sql>
+                    delete from rating where book_id = :book_id and member_id = :member_id;
+                    insert into rating (book_id, member_id, rate, created_at) values (:book_id, :member_id, :rate, :created_at);
+                </sql>
+            </invocation>
+            <in>
+                <field id="id" mapping="['book_id']"/>
+                <field id="member.id" default-value="1" mapping="['member_id']"/>
+                <field id="memberRating" mapping="['rate']"/>
+                <field id="now" default-value="1" normalize="T(java.time.LocalDate).now()" mapping="['created_at']"/>
+            </in>
+        </operation>
     </operations>
 </object>

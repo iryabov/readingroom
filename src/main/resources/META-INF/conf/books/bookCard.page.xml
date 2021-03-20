@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+      name="{title}">
+    <regions>
+        <form id="book" query-id="bookCard">
+            <fields>
+                <row>
+                    <col size="1"></col>
+                    <col size="2">
+                        <field id="coverField" no-label-block="true">
+                            <controls>
+                                <image id="coverImg" data="{cover}"/>
+                            </controls>
+                        </field>
+                        <rating id="memberRating" no-label-block="true" half="true">
+                            <submit operation-id="rateBook"/>
+                        </rating>
+                        <button id="preview" label="${readSnippet}" visible="{previewUrl}">
+                            <a href=":previewUrl" target="newWindow">
+                                <path-param name="previewUrl" value="{previewUrl}"/>
+                            </a>
+                        </button>
+                        <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart">
+
+                        </button>
+                        <button id="haveRead" label="${haveRead}" icon="fa fa-book">
+
+                        </button>
+                    </col>
+                    <col size="7">
+                        <set>
+                            <row>
+                                <col size="8">
+                                    <text id="titleTxt" class="h1">{title}</text>
+                                    <text id="authors" class="h6">{authors}</text>
+                                </col>
+                                <col size="3">
+                                    <set field-label-location="left" field-label-width="100px">
+                                        <output-text id="createdBy"
+                                                     label="${createdBy}" visible="{createdBy}"/>
+                                    </set>
+                                </col>
+                                <col size="1">
+                                    <button id="edit" label="${edit}" class="pull-right">
+
+                                    </button>
+                                </col>
+                            </row>
+                        </set>
+                        <set>
+                            <row>
+                                <col size="1">
+                                    <output-text id="rating" icon="fa fa-star" no-label-block="true"/>
+                                </col>
+                                <col size="1">
+                                    <output-text id="wanttoread" icon="fa fa-heart" no-label-block="true"/>
+                                </col>
+                                <col size="1">
+                                    <output-text id="haveread" icon="fa fa-book" no-label-block="true"/>
+                                </col>
+                            </row>
+                        </set>
+                        <set label="${aboutBook}">
+                            <text id="descriptionTxt">{description}</text>
+                        </set>
+                        <set label="${additionalInfo}"
+                             field-label-align="left"
+                             field-label-location="left"
+                             field-label-width="200px">
+                            <row>
+                                <col>
+                                    <output-text id="publisher" label="${publisher}"/>
+                                    <output-text id="published" label="${published}"/>
+                                </col>
+                                <col>
+                                    <output-text id="language" label="${language}"/>
+                                    <output-text id="pageCount" label="${pageCount}"/>
+                                </col>
+                            </row>
+                        </set>
+                    </col>
+                    <col size="2"></col>
+                </row>
+
+            </fields>
+            <pre-filters>
+                <eq field-id="id" param="book_id"/>
+            </pre-filters>
+        </form>
+    </regions>
+</page>

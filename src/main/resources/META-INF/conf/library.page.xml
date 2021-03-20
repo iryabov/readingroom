@@ -19,17 +19,32 @@
             </fields>
         </form>
 
-        <tiles id="books">
+        <tiles id="books" query-id="books" cols-sm="2" cols-md="4" cols-lg="6">
+            <actions>
+                <action id="view">
+                    <open-page page-id="bookCard" route="/:book_id/view" object-id="book">
+                        <path-param name="book_id" value="{id}"/>
+                    </open-page>
+                </action>
+            </actions>
             <pagination show-count="false"/>
             <content>
                 <block>
-                    <image data=""/>
+                    <image data="{cover}" action-id="view">
+                    </image>
                 </block>
-                <block>
+                <block text-field-id="rating">
                     <rating/>
                 </block>
+                <block text-field-id="title">
+                    <link action-id="view">
+<!--                        <open-page page-id="bookCard" route="/:book_id/view" object-id="book">-->
+<!--                            <path-param name="book_id" value="{id}"/>-->
+<!--                        </open-page>-->
+                    </link>
+                </block>
                 <block>
-                    <text/>
+                    <text subtext-field-id="authors"/>
                 </block>
             </content>
         </tiles>

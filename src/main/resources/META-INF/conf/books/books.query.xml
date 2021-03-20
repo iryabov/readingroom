@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0">
+    <list>
+        <sql>
+            select :select
+            from book b
+            where :filters
+            order by b.created_at desc
+        </sql>
+    </list>
+    <count count-mapping="[0][cnt]">
+        <sql>
+            select count(*) as cnt
+            from book b
+            where :filters
+        </sql>
+    </count>
+
+    <fields>
+        <field id="id">
+            <select mapping="[id]">b.id as id</select>
+        </field>
+        <field id="title">
+            <select mapping="[title]">b.title as title</select>
+        </field>
+        <field id="authors" domain="string">
+            <select mapping="[authors]">array_to_string(b.authors, ', ', '*') as authors</select>
+        </field>
+        <field id="cover">
+            <select mapping="[cover]">b.cover as cover</select>
+        </field>
+        <field id="rating">
+            <select mapping="[rating]">4 as rating</select>
+        </field>
+    </fields>
+</query>

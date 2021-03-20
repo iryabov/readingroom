@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0" object-id="book">
+    <unique filters="id" result-mapping="[0]">
+        <sql>
+            select :select
+            from book b
+            where id = :id
+        </sql>
+    </unique>
+
+    <fields>
+        <field id="id">
+            <select mapping="[id]">b.id as id</select>
+            <filters>
+                <eq filter-id="id" mapping="['id']"/>
+            </filters>
+        </field>
+        <field id="title">
+            <select mapping="[title]">b.title as title</select>
+        </field>
+        <field id="authors" domain="string">
+            <select mapping="[authors]">array_to_string(b.authors, ', ', '*') as authors</select>
+        </field>
+        <field id="cover">
+            <select mapping="[cover]">b.cover as cover</select>
+        </field>
+        <field id="rating">
+            <select mapping="[rating]">4 as rating</select>
+        </field>
+        <field id="wanttoread">
+            <select mapping="[wanttoread]">12 as wanttoread</select>
+        </field>
+        <field id="haveread">
+            <select mapping="[haveread]">3 as haveread</select>
+        </field>
+        <field id="description">
+            <select mapping="[description]">b.description as description</select>
+        </field>
+        <field id="language">
+            <select mapping="[language]">b.language as language</select>
+        </field>
+        <field id="createdBy">
+            <select mapping="[created_by_name]">(select m.name from member m where m.id = b.created_by) as created_by_name</select>
+        </field>
+        <field id="createdAt">
+            <select mapping="[created_at]">b.created_at as created_at</select>
+        </field>
+        <field id="publisher">
+            <select mapping="[publisher]">b.publisher as publisher</select>
+        </field>
+        <field id="published">
+            <select mapping="[published]">b.published as published</select>
+        </field>
+        <field id="pageCount">
+            <select mapping="[pagecount]">b.pagecount as pagecount</select>
+        </field>
+        <field id="previewUrl">
+            <select mapping="[preview_url]">b.preview_url as preview_url</select>
+        </field>
+    </fields>
+</query>
