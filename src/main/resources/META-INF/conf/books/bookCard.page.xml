@@ -32,20 +32,16 @@
                     <col size="7">
                         <set>
                             <row>
-                                <col size="8">
+                                <col size="10">
                                     <text id="titleTxt" class="h1">{title}</text>
                                     <text id="authors" class="h6">{authors}</text>
                                 </col>
-                                <col size="3">
+                                <col size="2">
                                     <set field-label-location="left" field-label-width="100px">
-                                        <output-text id="createdBy"
-                                                     label="${createdBy}" visible="{createdBy}"/>
-                                    </set>
-                                </col>
-                                <col size="1">
-                                    <button id="edit" label="${edit}" class="pull-right">
+                                        <button id="edit" label="${edit}" class="pull-right">
 
-                                    </button>
+                                        </button>
+                                    </set>
                                 </col>
                             </row>
                         </set>
@@ -59,6 +55,13 @@
                                 </col>
                                 <col size="1">
                                     <output-text id="haveread" icon="fa fa-book" no-label-block="true"/>
+                                </col>
+                                <col size="6"/>
+                                <col size="3">
+                                    <set field-label-location="left" field-label-width="100px">
+                                        <output-text id="createdBy"
+                                                     label="${createdBy}" class="text-muted"/>
+                                    </set>
                                 </col>
                             </row>
                         </set>
