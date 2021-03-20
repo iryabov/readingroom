@@ -30,7 +30,7 @@
             <select mapping="[cover]">b.cover as cover</select>
         </field>
         <field id="rating">
-            <select mapping="[rating]">4 as rating</select>
+            <select mapping="[rating]">(select avg(r.rate) from rating r where r.book_id = b.id) as rating</select>
         </field>
     </fields>
 </query>

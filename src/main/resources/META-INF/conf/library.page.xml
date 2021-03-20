@@ -34,7 +34,7 @@
                     </image>
                 </block>
                 <block text-field-id="rating">
-                    <rating/>
+                    <rating half="true"/>
                 </block>
                 <block text-field-id="title">
                     <link action-id="view">
