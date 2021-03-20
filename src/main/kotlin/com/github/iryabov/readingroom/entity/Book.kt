@@ -31,8 +31,8 @@ class Book(
         @JoinColumn(name = "created_by")
         var createdBy: Member? = null,
         var createdAt: LocalDate? = LocalDate.now(),
-        var isbn: String? = null,
         var pagecount: Int? = null,
+        @Column(name = "preview_url", columnDefinition = "text")
         var previewUrl: String? = null,
         var status: BookStatus? = BookStatus.ADDED,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

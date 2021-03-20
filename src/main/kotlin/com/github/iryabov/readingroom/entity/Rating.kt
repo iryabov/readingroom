@@ -4,14 +4,13 @@ import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
-@Table(name = "review")
-class Review(
+@Table(name = "rating", uniqueConstraints = [UniqueConstraint(name = "rating_book_member_unique", columnNames = [ "book_id", "member_id" ])])
+class Rating(
         @ManyToOne
         var book: Book,
         @ManyToOne
         var member: Member,
-        @Column(name = "description", columnDefinition = "text")
-        var description: String,
+        var rate: Int,
         var createdAt: LocalDate = LocalDate.now(),
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null

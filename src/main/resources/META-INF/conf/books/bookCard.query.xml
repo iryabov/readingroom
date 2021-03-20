@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <query xmlns="http://n2oapp.net/framework/config/schema/query-4.0" object-id="book">
-    <unique filters="id" result-mapping="[0]">
+    <unique filters="id, userId" result-mapping="[0]">
         <sql>
             select :select
             from book b
@@ -13,6 +13,12 @@
             <select mapping="[id]">b.id as id</select>
             <filters>
                 <eq filter-id="id" mapping="['id']"/>
+            </filters>
+        </field>
+        <field id="userId">
+            <filters>
+<!--todo #{userId}-->
+                <eq filter-id="userId" default-value="1" mapping="[user_id]"/>
             </filters>
         </field>
         <field id="title">
@@ -56,6 +62,10 @@
         </field>
         <field id="previewUrl">
             <select mapping="[preview_url]">b.preview_url as preview_url</select>
+        </field>
+
+        <field id="memberRating">
+            <select mapping="[memberRating]">(select r.rate from rating r where book_id = b.id and member_id = :user_id) as memberRating</select>
         </field>
     </fields>
 </query>

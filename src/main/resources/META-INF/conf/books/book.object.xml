@@ -12,7 +12,7 @@
                 </java>
             </invocation>
             <in>
-<!--                <field id="member.id" mapping="createdBy.id" default-value="#{memberId}"/>-->
+                <field id="member.id" mapping="createdBy.id" default-value="1"/><!--todo #{userId}-->
                 <field id="cover.url" mapping="cover"/>
                 <field id="title" mapping="title"/>
                 <field id="authors" mapping="authors"/>
@@ -32,14 +32,15 @@
         <operation id="rateBook">
             <invocation>
                 <sql>
-                    delete from rating where book_id = :book_id and member_id = :member_id;
-                    insert into rating (book_id, member_id, rate, created_at) values (:book_id, :member_id, :rate, :created_at);
+                    insert into rating (book_id, member_id, rate, created_at) values (:book_id, :member_id, :rate, :created_at)
+                    on conflict on constraint rating_book_member_unique
+                    do update set rate = EXCLUDED.rate, created_at = EXCLUDED.created_at
                 </sql>
             </invocation>
             <in>
-                <field id="id" mapping="['book_id']"/>
-                <field id="member.id" default-value="1" mapping="['member_id']"/>
-                <field id="memberRating" mapping="['rate']"/>
+                <field id="id" mapping="['book_id']" param="book_id"/>
+                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+                <field id="rate" mapping="['rate']"/>
                 <field id="now" default-value="1" normalize="T(java.time.LocalDate).now()" mapping="['created_at']"/>
             </in>
         </operation>

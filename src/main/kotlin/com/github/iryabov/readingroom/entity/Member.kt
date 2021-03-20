@@ -11,4 +11,6 @@ class Member(
         var avatar: String? = null,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null
-)
+) {
+        constructor(): this("", "")
+}

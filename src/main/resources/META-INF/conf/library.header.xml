@@ -4,7 +4,7 @@
     <nav>
         <page page-id="library" label="${library}" route="/library"/>
         <page page-id="orders" label="${orders}" route="/orders"/>
-        <page page-id="readers" label="${readers}" route="/readers"/>
+        <page page-id="members" label="${readers}" route="/readers"/>
     </nav>
     <extra-menu>
         <!--        <a label="#{name}" href="/#/library" icon="fa fa-user"/>-->

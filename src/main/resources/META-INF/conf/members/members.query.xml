@@ -2,12 +2,21 @@
 <query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
        object-id="member">
     <list>
-        <java method="findAll">
-
-        </java>
+        <sql>
+            select :select
+            from member m
+            where :filters
+        </sql>
     </list>
+    <count count-mapping="[0][cnt]">
+        <sql>
+            select count(*) as cnt
+            from member m
+            where :filters
+        </sql>
+    </count>
     <fields>
-        <field id="id">
+        <field id="id" domain="integer">
             <select mapping="['id']">m.id as id</select>
             <filters>
                 <eq filter-id="id">m.id = :id</eq>
