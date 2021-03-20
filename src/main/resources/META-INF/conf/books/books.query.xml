@@ -21,7 +21,8 @@
             <select mapping="[id]">b.id as id</select>
         </field>
         <field id="title">
-            <select mapping="[title]">b.title as title</select>
+            <select mapping="[title]"
+                    normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).short(#this, 50)">b.title as title</select>
         </field>
         <field id="authors" domain="string">
             <select mapping="[authors]">array_to_string(b.authors, ', ', '*') as authors</select>
