@@ -1,4 +1,42 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <query xmlns="http://n2oapp.net/framework/config/schema/query-4.0">
+    <list result-mapping="items" count-mapping="totalItems">
+        <java method="search" class="com.github.iryabov.readingroom.service.GlobalSearchService">
+            <arguments>
+                <argument name="query" type="primitive"/>
+                <argument name="startIndex" type="primitive" default-value="0"/>
+                <argument name="maxResults" type="primitive" default-value="30"/>
+            </arguments>
+            <spring/>
+        </java>
+    </list>
+    
+    <fields>
+        <field id="id">
+            <select mapping="id"/>
+        </field>
+        <field id="etag">
+            <select mapping="etag"/>
+        </field>
+        <field id="title">
+            <select mapping="volumeInfo.title"/>
+            <filters>
+                <eq filter-id="query" mapping="[0]"/>
+            </filters>
+        </field>
+        <field id="authors" domain="string[]">
+            <select mapping="volumeInfo.authors"/>
+        </field>
+        <field id="description">
+            <select mapping="volumeInfo.description"/>
+        </field>
+        <field id="cover">
+            <select mapping="volumeInfo.imageLinks?.thumbnail"/>
+        </field>
 
+        <field id="authorsString">
+            <select mapping="volumeInfo.authors"
+                    normalize="#this != null ? T(java.lang.String).join(', ', #this) : ''"/>
+        </field>
+    </fields>
 </query>

@@ -12,8 +12,9 @@ class GlobalSearchTest @Autowired constructor(
 ) {
     @Test
     fun `test global search`() {
-        assertThat(service.search("Harry Potter"))
-                .anyMatch { it.title.contains("Harry Potter") }
+        assertThat(service.search("Harry Potter").items)
+                .anyMatch { it.volumeInfo.title.contains("Harry Potter") }
+
 
     }
 }

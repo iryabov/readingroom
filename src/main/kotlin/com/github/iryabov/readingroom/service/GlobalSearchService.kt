@@ -24,14 +24,16 @@ class GlobalSearchService {
                     }.build())
             .build()
 
-    fun search(query: String): List<BookVolume> {
+    fun search(query: String?, startIndex: Int = 0, maxResults: Int = 30): GoogleBook {
+        if (query?.length ?: 0 < 3)
+            return GoogleBook(totalItems = 0, items = emptyList())
         val response = client.get().uri {
             it.path("/volumes")
-                    .queryParam("q", query)
+                    .queryParam("q", query ?: "")
                     .queryParam("printType", "books")
                     .build()
         }.retrieve().bodyToMono(GoogleBook::class.java)
-        return response.block()?.items?.map { it.volumeInfo } ?: emptyList()
+        return response.block() ?: GoogleBook(totalItems = 0, items = emptyList())
     }
 
 }
