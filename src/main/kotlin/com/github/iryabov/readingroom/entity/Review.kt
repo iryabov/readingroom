@@ -11,6 +11,7 @@ class Review(
         @ManyToOne
         var member: Member,
         var summary: String? = null,
+        @Column(name = "description", columnDefinition = "text")
         var description: String,
         var rate: Int? = null,
         var createdAt: LocalDate = LocalDate.now(),

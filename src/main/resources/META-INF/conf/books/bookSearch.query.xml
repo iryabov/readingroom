@@ -33,10 +33,24 @@
         <field id="cover">
             <select mapping="volumeInfo.imageLinks?.thumbnail"/>
         </field>
+        <field id="publisher">
+            <select mapping="volumeInfo.publisher"/>
+        </field>
+        <field id="published">
+            <select mapping="volumeInfo.getPublishedYear()"/>
+        </field>
+        <field id="language.id">
+            <select mapping="volumeInfo.getLanguageEnum()"/>
+        </field>
+        <field id="pageCount">
+            <select mapping="volumeInfo.pageCount"/>
+        </field>
+        <field id="previewLink">
+            <select mapping="volumeInfo.previewLink"/>
+        </field>
 
         <field id="authorsString">
-            <select mapping="volumeInfo.authors"
-                    normalize="#this != null ? T(java.lang.String).join(', ', #this) : ''"/>
+            <select mapping="volumeInfo.getAuthorsString"/>
         </field>
     </fields>
 </query>

@@ -15,32 +15,65 @@
                 </input-select>
                 <set>
                     <image-upload id="cover" label="${cover}" required="true"
-                                  upload-url="/images/convert"/>
-                    <input-text id="title" label="${title}" required="true"/>
+                                  upload-url="/images/convert">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">
+                                var o = {};
+                                o.url = search.cover;
+                                return o;
+                            </set-value>
+                        </dependencies>
+                    </image-upload>
+                    <input-text id="title" label="${title}" required="true">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.title</set-value>
+                        </dependencies>
+                    </input-text>
                     <auto-complete id="authors" label="${author}" tags="true"
-                                   max-tag-text-length="30" required="true"/>
-                    <select id="language" label="${language}" required="true">
+                                   max-tag-text-length="30" required="true">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.authors</set-value>
+                        </dependencies>
+                    </auto-complete>
+                    <text-area id="description" label="${description}" min-rows="5">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.description</set-value>
+                        </dependencies>
+                    </text-area>
+                </set>
+                <line collapsible="false">
+                    <input-text id="publisher" label="${publisher}">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.publisher</set-value>
+                        </dependencies>
+                    </input-text>
+                    <input-text id="published" label="${published}" domain="integer">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.published</set-value>
+                        </dependencies>
+                    </input-text>
+                    <radio-group id="language" label="${language}" inline="true">
                         <options>
-                            <option id="EN" name="English"/>
-                            <option id="RU" name="Russian"/>
+                            <option id="EN" name="${english}"/>
+                            <option id="RU" name="${russian}"/>
                         </options>
-                    </select>
-                </set>
+                    </radio-group>
+                </line>
                 <set>
-                    <input-text id="publisher" label="${publisher}"/>
-                    <input-text id="published" label="${published}" domain="integer"/>
+                    <input-text id="pageCount" label="${pageCount}" domain="integer">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.pageCount</set-value>
+                        </dependencies>
+                    </input-text>
+                    <input-text id="previewUrl" label="${previewUrl}">
+                        <dependencies>
+                            <set-value on="search" apply-on-init="false">search.previewLink</set-value>
+                        </dependencies>
+                    </input-text>
                 </set>
-                <set>
+                <line collapsible="false">
                     <auto-complete id="categories" label="${categories}"
                                    tags="true" max-tag-text-length="30"/>
-
-                </set>
-                <set>
-                    <input-text id="isbn" label="${isbn}" length="13"/>
-                    <input-text id="pageCount" label="${pageCount}" domain="integer"/>
-                    <input-text id="previewUrl" label="${previewUrl}"/>
-                </set>
-                <set>
                     <radio-group id="status" label="${status}" inline="true">
                         <default-value id="ADDED"/>
                         <options>
@@ -50,7 +83,7 @@
                             <option id="DELETED" name="${deleted}"/>
                         </options>
                     </radio-group>
-                </set>
+                </line>
             </fields>
         </form>
     </regions>

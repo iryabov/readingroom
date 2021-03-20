@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.github.iryabov.readingroom.entity.Language
+import java.time.LocalDate
 
 @Service
 class GlobalSearchService {
@@ -63,7 +65,25 @@ class BookVolume(
         var imageLinks: BookImage?,
         var language: String?,
         var previewLink: String?
-)
+) {
+    fun getPublishedYear(): Int? {
+        return when (publishedDate?.length) {
+            10 -> LocalDate.parse(publishedDate).year
+            4 -> Integer.parseInt(publishedDate)
+            else -> null
+        }
+    }
+
+    fun getLanguageEnum(): Language? {
+        return when (language?.toLowerCase()) {
+            "en" -> Language.EN
+            "ru" -> Language.RU
+            else -> null
+        }
+    }
+
+    fun getAuthorsString() = authors?.joinToString()
+}
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class BookImage(

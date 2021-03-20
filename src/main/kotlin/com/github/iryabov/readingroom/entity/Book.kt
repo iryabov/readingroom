@@ -17,6 +17,7 @@ class Book(
         @Type(type = "list-array")
         @Column(name = "authors", columnDefinition = "varchar[]")
         var authors: List<String>,
+        @Column(name = "description", columnDefinition = "text")
         var description: String? = null,
         var language: Language? = null,
         var published: Int? = null,
