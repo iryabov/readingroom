@@ -29,7 +29,7 @@ class RepositoriesTest @Autowired constructor(
                 authors = listOf("Joanne Rowling"),
                 description = "The Adventures of Harry and His Friends",
                 language = Language.EN,
-                published = LocalDate.of(2000, 3, 1),
+                published = 2000,
                 categories = listOf("Adventure", "Fantasy"),
                 createdBy = igor
         ))
@@ -37,7 +37,7 @@ class RepositoriesTest @Autowired constructor(
         //find
         assertThat(bookRepo.findById(igor.id!!).isPresent).isTrue
         assertThat(bookRepo.findById(harry.id!!).isPresent).isTrue
-        var found = bookRepo.findById(harry.id!!).get()
+        val found = bookRepo.findById(harry.id!!).get()
         assertThat(found.categories).allMatch { it == "Adventure" || it == "Fantasy" }
 
 //        //update

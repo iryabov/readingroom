@@ -13,6 +13,44 @@
                               search-filter-id="query">
 
                 </input-select>
+                <set>
+                    <image-upload id="cover" label="${cover}" required="true"
+                                  upload-url="/images/convert"/>
+                    <input-text id="title" label="${title}" required="true"/>
+                    <auto-complete id="authors" label="${author}" tags="true"
+                                   max-tag-text-length="30" required="true"/>
+                    <select id="language" label="${language}" required="true">
+                        <options>
+                            <option id="EN" name="English"/>
+                            <option id="RU" name="Russian"/>
+                        </options>
+                    </select>
+                </set>
+                <set>
+                    <input-text id="publisher" label="${publisher}"/>
+                    <input-text id="published" label="${published}" domain="integer"/>
+                </set>
+                <set>
+                    <auto-complete id="categories" label="${categories}"
+                                   tags="true" max-tag-text-length="30"/>
+
+                </set>
+                <set>
+                    <input-text id="isbn" label="${isbn}" length="13"/>
+                    <input-text id="pageCount" label="${pageCount}" domain="integer"/>
+                    <input-text id="previewUrl" label="${previewUrl}"/>
+                </set>
+                <set>
+                    <radio-group id="status" label="${status}" inline="true">
+                        <default-value id="ADDED"/>
+                        <options>
+                            <option id="ADDED" name="${added}"/>
+                            <option id="AVAILABLE" name="${available}"/>
+                            <option id="RENTED" name="${rented}"/>
+                            <option id="DELETED" name="${deleted}"/>
+                        </options>
+                    </radio-group>
+                </set>
             </fields>
         </form>
     </regions>

@@ -16,12 +16,16 @@ class ImageController {
         val encodedString: String = Base64.getEncoder().encodeToString(content)
         return ImageInfo(
                 url = "data:image/png;base64,$encodedString",
-                id = file.originalFilename
+                id = file.originalFilename,
+                fileName = file.originalFilename,
+                size = file.size
         )
     }
 }
 
 class ImageInfo(
         val url: String,
-        val id: String? = null
+        val id: String? = null,
+        val fileName: String? = null,
+        val size: Long? = null
 )

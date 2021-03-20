@@ -1,4 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<object xmlns="http://n2oapp.net/framework/config/schema/object-4.0">
-
+<object xmlns="http://n2oapp.net/framework/config/schema/object-4.0"
+        entity-class="com.github.iryabov.readingroom.entity.Book">
+    <operations>
+        <operation id="addBook">
+            <invocation>
+                <java method="save" class="com.github.iryabov.readingroom.repository.BookRepository">
+                    <arguments>
+                        <argument name="entity" type="entity"/>
+                    </arguments>
+                    <spring/>
+                </java>
+            </invocation>
+            <in>
+<!--                <field id="member.id" mapping="createdBy.id" default-value="#{memberId}"/>-->
+                <field id="cover.url" mapping="cover"/>
+                <field id="title" mapping="title"/>
+                <field id="authors" mapping="authors"/>
+                <field id="description" mapping="description"/>
+                <field id="categories" mapping="categories"/>
+                <field id="language.id" mapping="language"
+                       normalize="T(com.github.iryabov.readingroom.entity.Language).valueOf(#this)"/>
+                <field id="publisher" mapping="publisher"/>
+                <field id="published" mapping="published" domain="integer"/>
+                <field id="isbn" mapping="isbn"/>
+                <field id="pageCount" mapping="pagecount"/>
+                <field id="previewUrl" mapping="previewUrl"/>
+                <field id="status.id" mapping="status"
+                       normalize="T(com.github.iryabov.readingroom.entity.BookStatus).valueOf(#this)"/>
+            </in>
+        </operation>
+    </operations>
 </object>
