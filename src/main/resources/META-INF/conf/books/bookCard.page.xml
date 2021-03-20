@@ -83,6 +83,10 @@
                                 </col>
                             </row>
                         </set>
+                        <set label="${categories}">
+<!--                            <output-list id="categories" label-field-id="name" href-field-id="href" separator=","/>-->
+                            <output-text id="categories" no-label-block="true"/>
+                        </set>
                     </col>
                     <col size="2"></col>
                 </row>
