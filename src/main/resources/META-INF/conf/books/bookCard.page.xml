@@ -23,17 +23,17 @@
                             </a>
                         </button>
                         <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart">
-
+                            <invoke operation-id="wantToRead"/>
                         </button>
                         <button id="haveRead" label="${haveRead}" icon="fa fa-book">
-
+                            <invoke operation-id="haveRead"/>
                         </button>
                     </col>
                     <col size="7">
                         <set>
                             <row>
                                 <col size="10">
-                                    <text id="titleTxt" class="h1">{title}</text>
+                                    <text id="titleTxt" class="h2">{title}</text>
                                     <text id="authors" class="h6">{authors}</text>
                                 </col>
                                 <col size="2">

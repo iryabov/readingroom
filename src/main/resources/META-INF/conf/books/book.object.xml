@@ -44,5 +44,29 @@
                 <field id="now" default-value="1" normalize="T(java.time.LocalDate).now()" mapping="['created_at']"/>
             </in>
         </operation>
+        <operation id="wantToRead">
+            <invocation>
+                <sql>
+                    insert into wanttoread (book_id, member_id) values (:book_id, :member_id)
+                    on conflict do nothing
+                </sql>
+            </invocation>
+            <in>
+                <field id="id" mapping="['book_id']" param="book_id"/>
+                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+            </in>
+        </operation>
+        <operation id="haveRead">
+            <invocation>
+                <sql>
+                    insert into haveread (book_id, member_id) values (:book_id, :member_id)
+                    on conflict do nothing
+                </sql>
+            </invocation>
+            <in>
+                <field id="id" mapping="['book_id']" param="book_id"/>
+                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+            </in>
+        </operation>
     </operations>
 </object>

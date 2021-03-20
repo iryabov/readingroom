@@ -22,8 +22,7 @@
             </filters>
         </field>
         <field id="title">
-            <select mapping="[title]"
-                    normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).short(#this, 80)">b.title as title</select>
+            <select mapping="[title]">b.title as title</select>
         </field>
         <field id="fullTitle">
             <select mapping="[title]"/>
@@ -38,10 +37,10 @@
             <select mapping="[rating]">(select avg(r.rate) from rating r where r.book_id = b.id) as rating</select>
         </field>
         <field id="wanttoread">
-            <select mapping="[wanttoread]">12 as wanttoread</select>
+            <select mapping="[wanttoread]">(select count(*) from wanttoread wr where wr.book_id = b.id) as wanttoread</select>
         </field>
         <field id="haveread">
-            <select mapping="[haveread]">3 as haveread</select>
+            <select mapping="[haveread]">(select count(*) from haveread hr where hr.book_id = b.id) as haveread</select>
         </field>
         <field id="description">
             <select mapping="[description]">b.description as description</select>

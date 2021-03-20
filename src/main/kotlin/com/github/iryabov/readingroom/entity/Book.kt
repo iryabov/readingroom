@@ -40,14 +40,14 @@ class Book(
         @ManyToMany(targetEntity = Member::class)
         @JoinTable(
                 name = "wanttoread",
-                joinColumns = [JoinColumn(name = "member_id")],
-                inverseJoinColumns = [JoinColumn(name = "book_id")])
+                joinColumns = [JoinColumn(name = "book_id")],
+                inverseJoinColumns = [JoinColumn(name = "member_id")])
         var wantToRead: Set<Member>? = emptySet(),
         @ManyToMany(targetEntity = Member::class)
         @JoinTable(
                 name = "haveread",
-                joinColumns = [JoinColumn(name = "member_id")],
-                inverseJoinColumns = [JoinColumn(name = "book_id")])
+                joinColumns = [JoinColumn(name = "book_id")],
+                inverseJoinColumns = [JoinColumn(name = "member_id")])
         var haveRead: Set<Member>? = emptySet()
 ) {
         constructor(): this("", emptyList())
