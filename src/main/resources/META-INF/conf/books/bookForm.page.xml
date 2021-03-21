@@ -78,12 +78,10 @@
                     <auto-complete id="categories" label="${categories}"
                                    tags="true" max-tag-text-length="30"/>
                     <radio-group id="status" label="${status}" inline="true">
-                        <default-value id="ADDED"/>
+                        <default-value id="AVAILABLE"/>
                         <options>
-                            <option id="ADDED" name="${added}"/>
                             <option id="AVAILABLE" name="${available}"/>
-                            <option id="RENTED" name="${rented}"/>
-                            <option id="DELETED" name="${deleted}"/>
+                            <option id="NOT_AVAILABLE" name="${not_available}"/>
                         </options>
                     </radio-group>
                 </line>

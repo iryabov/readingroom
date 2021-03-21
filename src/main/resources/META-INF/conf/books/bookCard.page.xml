@@ -45,7 +45,7 @@
                                 <col size="2">
                                     <field id="status" class="pull-right" no-label-block="true">
                                         <controls>
-                                            <output-text id="status" no-label-block="true" class="badge badge-success"/>
+                                            <output-text id="status" no-label-block="true" class="`'text-uppercase badge badge-' + statusColor`"/>
                                         </controls>
                                     </field>
                                 </col>

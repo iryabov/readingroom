@@ -1,8 +1,6 @@
 package com.github.iryabov.readingroom.entity
 
-enum class BookStatus {
-    ADDED,
-    AVAILABLE,
-    RENTED,
-    DELETED
+enum class BookStatus(val color: String) {
+    AVAILABLE("success"),
+    NOT_AVAILABLE("warning")
 }

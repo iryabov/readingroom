@@ -22,7 +22,13 @@
             </filters>
         </field>
         <field id="status">
-            <select mapping="[status]">b.status as status</select>
+            <select mapping="[status]"
+                    default-value="NOT_AVAILABLE"
+                    normalize="@n2oMessageSourceAccessor.getMessage(#this.toLowerCase())">b.status as status</select>
+        </field>
+        <field id="statusColor">
+            <select mapping="[status]"
+                    normalize="T(com.github.iryabov.readingroom.entity.BookStatus).valueOf(#this).color"/>
         </field>
         <field id="title">
             <select mapping="[title]">b.title as title</select>

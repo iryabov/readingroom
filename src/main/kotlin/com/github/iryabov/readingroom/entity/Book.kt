@@ -36,7 +36,7 @@ class Book(
         @Column(name = "preview_url", columnDefinition = "text")
         var previewUrl: String? = null,
         @Enumerated(EnumType.STRING)
-        var status: BookStatus? = BookStatus.ADDED,
+        var status: BookStatus? = BookStatus.AVAILABLE,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null,
         @ManyToMany(targetEntity = Member::class)
