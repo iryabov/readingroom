@@ -4,7 +4,8 @@
         <sql>
             select :select
             from book b
-            where id = :id
+            left join member m on b.created_by = m.id
+            where b.id = :id
         </sql>
     </unique>
 
@@ -49,6 +50,15 @@
         <field id="categories">
             <select mapping="[categories]"
                     normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).split(#this, ', ')">array_to_string(b.categories, ', ', '*') as categories</select>
+        </field>
+        <field id="createdBy.id">
+            <select mapping="[created_by_id]">m.id as created_by_id</select>
+        </field>
+        <field id="createdBy.name">
+            <select mapping="[created_by_name]">m.name as created_by_name</select>
+        </field>
+        <field id="createdAt" domain="localdate">
+            <select mapping="[created_at]">b.created_at as created_at</select>
         </field>
     </fields>
 </query>

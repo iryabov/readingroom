@@ -30,6 +30,10 @@
         </field>
         <field id="name">
             <select mapping="['name']">m.name as name</select>
+            <filters>
+                <like filter-id="name" mapping="[name]"
+                      normalize="toLowerCase()">lower(m.name)||m.email like '%'||:name||'%'</like>
+            </filters>
         </field>
         <field id="avatar">
             <select mapping="['avatar']">m.avatar as avatar</select>

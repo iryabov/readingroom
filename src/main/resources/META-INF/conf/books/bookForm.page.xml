@@ -16,7 +16,7 @@
                         <visibility>typeof id == 'undefined'</visibility>
                     </dependencies>
                 </input-select>
-                <set>
+                <line collapsible="false" label="${primaryInfo}">
                     <image-upload id="cover" label="${cover}" required="true"
                                   upload-url="/images/convert">
                         <dependencies>
@@ -32,7 +32,7 @@
                             <set-value on="search" apply-on-init="false">search.title</set-value>
                         </dependencies>
                     </input-text>
-                    <auto-complete id="authors" label="${author}" tags="true"
+                    <auto-complete id="authors" label="${authors}" tags="true"
                                    max-tag-text-length="30" required="true">
                         <dependencies>
                             <set-value on="search" apply-on-init="false">search.authors</set-value>
@@ -43,8 +43,8 @@
                             <set-value on="search" apply-on-init="false">search.description</set-value>
                         </dependencies>
                     </text-area>
-                </set>
-                <line collapsible="false">
+                </line>
+                <line collapsible="false" label="${additionalInfo}">
                     <input-text id="publisher" label="${publisher}">
                         <dependencies>
                             <set-value on="search" apply-on-init="false">search.publisher</set-value>
@@ -74,7 +74,7 @@
                         </dependencies>
                     </input-text>
                 </set>
-                <line collapsible="false">
+                <line collapsible="false" label="${metaInfo}">
                     <auto-complete id="categories" label="${categories}"
                                    tags="true" max-tag-text-length="30"/>
                     <radio-group id="status" label="${status}" inline="true">
@@ -84,6 +84,11 @@
                             <option id="NOT_AVAILABLE" name="${not_available}"/>
                         </options>
                     </radio-group>
+                    <input-select id="createdBy" label="${createdBy}"
+                                  query-id="members" label-field-id="name" search-filter-id="name">
+<!--                        todo def-val-->
+                    </input-select>
+                    <output-text id="createdAt" label="${createdAt}" visible="{createdAt}"/>
                 </line>
             </fields>
             <pre-filters>
