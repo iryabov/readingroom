@@ -2,7 +2,7 @@
 <page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
       name="${addBook}">
     <regions>
-        <form object-id="book">
+        <form object-id="book" query-id="bookForm">
             <fields>
                 <input-select id="search" label="${findBook}"
                               placeholder="${findBookPlaceholder}"
@@ -10,8 +10,11 @@
                               label-field-id="title"
                               image-field-id="cover"
                               description-field-id="authorsString"
-                              search-filter-id="query">
-
+                              search-filter-id="query"
+                              visible="false">
+                    <dependencies>
+                        <visibility>typeof id == 'undefined'</visibility>
+                    </dependencies>
                 </input-select>
                 <set>
                     <image-upload id="cover" label="${cover}" required="true"
@@ -85,6 +88,9 @@
                     </radio-group>
                 </line>
             </fields>
+            <pre-filters>
+                <eq field-id="id" param="book_id"/>
+            </pre-filters>
         </form>
     </regions>
 </page>

@@ -12,7 +12,7 @@
                                 <image id="coverImg" data="{cover}"/>
                             </controls>
                         </field>
-                        <rating id="memberRating" no-label-block="true" half="true" >
+                        <rating id="memberRating" no-label-block="true" half="true">
                             <submit operation-id="rateBook" route="/rate">
                                 <form-param id="rate" value="{memberRating}"/>
                             </submit>
@@ -23,13 +23,17 @@
                             </a>
                         </button>
                         <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart">
-                            <invoke operation-id="wantToRead"/>
+                            <invoke operation-id="wantToRead" route="/wantToRead"/>
                         </button>
                         <button id="haveRead" label="${haveRead}" icon="fa fa-book">
-                            <invoke operation-id="haveRead"/>
+                            <invoke operation-id="haveRead" route="/haveRead"/>
                         </button>
-                        <button id="edit" label="${edit}">
-
+                        <button id="edit" label="${edit}" color="primary">
+                            <open-page page-id="bookForm"
+                                       upload="query"
+                                       submit-operation-id="saveBook"
+                                       route="/edit"
+                                       page-name="${edit}"/>
                         </button>
                     </col>
                     <col size="7">
@@ -39,7 +43,7 @@
                                     <text id="titleTxt" class="h2">{title}</text>
                                 </col>
                                 <col size="2">
-                                    <field id="status" class="pull-right">
+                                    <field id="status" class="pull-right" no-label-block="true">
                                         <controls>
                                             <output-text id="status" no-label-block="true" class="badge badge-success"/>
                                         </controls>
@@ -94,7 +98,7 @@
                             </row>
                         </set>
                         <set label="${categories}">
-<!--                            <output-list id="categories" label-field-id="name" href-field-id="href" separator=","/>-->
+                            <!--                            <output-list id="categories" label-field-id="name" href-field-id="href" separator=","/>-->
                             <output-text id="categories" no-label-block="true"/>
                         </set>
                     </col>

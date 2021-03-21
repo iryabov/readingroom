@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0" object-id="book">
+    <unique filters="id" result-mapping="[0]">
+        <sql>
+            select :select
+            from book b
+            where id = :id
+        </sql>
+    </unique>
+
+    <fields>
+        <field id="id">
+            <select mapping="[id]">b.id as id</select>
+            <filters>
+                <eq filter-id="id" mapping="['id']"/>
+            </filters>
+        </field>
+        <field id="status.id">
+            <select mapping="[status]">b.status as status</select>
+        </field>
+        <field id="title">
+            <select mapping="[title]">b.title as title</select>
+        </field>
+        <field id="authors" domain="string">
+            <select mapping="[authors]"
+                    normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).split(#this, ', ')">array_to_string(b.authors, ', ', '*') as authors</select>
+        </field>
+        <field id="cover.url">
+            <select mapping="[cover]">b.cover as cover</select>
+        </field>
+        <field id="description">
+            <select mapping="[description]">b.description as description</select>
+        </field>
+        <field id="language.id">
+            <select mapping="[language]">b.language as language</select>
+        </field>
+        <field id="publisher">
+            <select mapping="[publisher]">b.publisher as publisher</select>
+        </field>
+        <field id="published">
+            <select mapping="[published]">b.published as published</select>
+        </field>
+        <field id="pageCount">
+            <select mapping="[pagecount]">b.pagecount as pagecount</select>
+        </field>
+        <field id="previewUrl">
+            <select mapping="[preview_url]">b.preview_url as preview_url</select>
+        </field>
+        <field id="categories">
+            <select mapping="[categories]"
+                    normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).split(#this, ', ')">array_to_string(b.categories, ', ', '*') as categories</select>
+        </field>
+    </fields>
+</query>

@@ -3,7 +3,9 @@
       name="${library}">
     <toolbar place="topRight">
         <button id="add" label="${addBook}" color="primary" widget-id="books">
-            <open-page page-id="bookForm" submit-operation-id="addBook"/>
+            <open-page page-id="bookForm"
+                       submit-operation-id="saveBook"
+                       upload="defaults"/>
         </button>
     </toolbar>
     <regions>

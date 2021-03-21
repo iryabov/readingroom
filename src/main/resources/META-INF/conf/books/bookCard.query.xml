@@ -27,9 +27,6 @@
         <field id="title">
             <select mapping="[title]">b.title as title</select>
         </field>
-        <field id="fullTitle">
-            <select mapping="[title]"/>
-        </field>
         <field id="authors" domain="string">
             <select mapping="[authors]">array_to_string(b.authors, ', ', '*') as authors</select>
         </field>

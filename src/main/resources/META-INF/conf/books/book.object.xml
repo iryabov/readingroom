@@ -2,7 +2,7 @@
 <object xmlns="http://n2oapp.net/framework/config/schema/object-4.0"
         entity-class="com.github.iryabov.readingroom.entity.Book">
     <operations>
-        <operation id="addBook">
+        <operation id="saveBook">
             <invocation>
                 <java method="save" class="com.github.iryabov.readingroom.repository.BookRepository">
                     <arguments>
@@ -12,7 +12,8 @@
                 </java>
             </invocation>
             <in>
-                <field id="member.id" mapping="createdBy.id" default-value="1"/><!--todo #{userId}-->
+                <field id="id" mapping="id" param="book_id"/>
+                <field id="member.id" mapping="createdBy.id" domain="integer" default-value="1"/><!--todo #{userId}-->
                 <field id="cover.url" mapping="cover"/>
                 <field id="title" mapping="title"/>
                 <field id="authors" mapping="authors"/>
