@@ -2,14 +2,23 @@
 <query xmlns="http://n2oapp.net/framework/config/schema/query-4.0">
     <list>
         <sql>
-            select b.categories
-            from book b
+            select c.name
+            from (select distinct unnest(b.categories) as name from book b) c
+            where :filters
         </sql>
     </list>
     <fields>
         <field id="id"/>
         <field id="name">
-            <select mapping="['name']"/>
+            <select mapping="[name]"/>
+            <filters>
+                <like filter-id="name"
+                      normalize="toLowerCase()">lower(c.name) like '%'||:name||'%'</like>
+            </filters>
+            <sorting/>
+        </field>
+        <field id="undefined"><!--todo-->
+            <sorting/>
         </field>
     </fields>
 </query>

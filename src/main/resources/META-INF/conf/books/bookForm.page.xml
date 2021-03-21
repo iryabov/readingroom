@@ -76,7 +76,8 @@
                 </set>
                 <line collapsible="false" label="${metaInfo}">
                     <auto-complete id="categories" label="${categories}"
-                                   tags="true" max-tag-text-length="30"/>
+                                   tags="true" max-tag-text-length="30"
+                                   query-id="categories" value-field-id="name" search-filter-id="name"/>
                     <radio-group id="status" label="${status}" inline="true">
                         <default-value id="AVAILABLE"/>
                         <options>
@@ -86,7 +87,7 @@
                     </radio-group>
                     <input-select id="createdBy" label="${createdBy}"
                                   query-id="members" label-field-id="name" search-filter-id="name">
-<!--                        todo def-val-->
+                        <!--                        todo def-val-->
                     </input-select>
                     <output-text id="createdAt" label="${createdAt}" visible="{createdAt}"/>
                 </line>
