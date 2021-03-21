@@ -28,19 +28,35 @@
                         <button id="haveRead" label="${haveRead}" icon="fa fa-book">
                             <invoke operation-id="haveRead"/>
                         </button>
+                        <button id="edit" label="${edit}">
+
+                        </button>
                     </col>
                     <col size="7">
                         <set>
                             <row>
                                 <col size="10">
                                     <text id="titleTxt" class="h2">{title}</text>
-                                    <text id="authors" class="h6">{authors}</text>
                                 </col>
                                 <col size="2">
-                                    <set field-label-location="left" field-label-width="100px">
-                                        <button id="edit" label="${edit}" class="pull-right">
-
-                                        </button>
+                                    <field id="status" class="pull-right">
+                                        <controls>
+                                            <output-text id="status" no-label-block="true" class="badge badge-success"/>
+                                        </controls>
+                                    </field>
+                                </col>
+                            </row>
+                        </set>
+                        <set>
+                            <row>
+                                <text id="authors" class="h6">{authors}</text>
+                                <col size="3">
+                                    <set field-label-location="left" field-label-width="20px">
+                                        <field id="createdBy" class="pull-right" label-class="text-muted" label="${by}">
+                                            <controls>
+                                                <output-text id="createdBy"/>
+                                            </controls>
+                                        </field>
                                     </set>
                                 </col>
                             </row>
@@ -57,12 +73,6 @@
                                     <output-text id="haveread" icon="fa fa-book" no-label-block="true"/>
                                 </col>
                                 <col size="6"/>
-                                <col size="3">
-                                    <set field-label-location="left" field-label-width="100px">
-                                        <output-text id="createdBy"
-                                                     label="${createdBy}" class="text-muted"/>
-                                    </set>
-                                </col>
                             </row>
                         </set>
                         <set label="${aboutBook}">

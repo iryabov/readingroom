@@ -19,6 +19,7 @@ class Book(
         var authors: List<String>,
         @Column(name = "description", columnDefinition = "text")
         var description: String? = null,
+        @Enumerated(EnumType.STRING)
         var language: Language? = null,
         var published: Int? = null,
         var publisher: String? = null,
@@ -34,6 +35,7 @@ class Book(
         var pagecount: Int? = null,
         @Column(name = "preview_url", columnDefinition = "text")
         var previewUrl: String? = null,
+        @Enumerated(EnumType.STRING)
         var status: BookStatus? = BookStatus.ADDED,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null,

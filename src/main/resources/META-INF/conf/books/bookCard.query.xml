@@ -21,6 +21,9 @@
                 <eq filter-id="userId" default-value="1" mapping="[user_id]"/>
             </filters>
         </field>
+        <field id="status">
+            <select mapping="[status]">b.status as status</select>
+        </field>
         <field id="title">
             <select mapping="[title]">b.title as title</select>
         </field>
