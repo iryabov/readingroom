@@ -39,9 +39,6 @@
         <field id="cover">
             <select mapping="[cover]">b.cover as cover</select>
         </field>
-        <field id="rating">
-            <select mapping="[rating]">(select avg(r.rate) from rating r where r.book_id = b.id) as rating</select>
-        </field>
         <field id="description">
             <select mapping="[description]">b.description as description</select>
         </field>
@@ -73,6 +70,15 @@
 
         <field id="memberRating">
             <select mapping="[memberRating]">(select r.rate from rating r where book_id = b.id and member_id = :user_id) as memberRating</select>
+        </field>
+        <field id="memberWantToRead">
+            <select mapping="[memberWantToRead]">exists (select * from wanttoread wr where book_id = b.id and wr.member_id = :user_id) as memberWantToRead</select>
+        </field>
+        <field id="memberHaveRead">
+            <select mapping="[memberHaveRead]">exists (select * from haveread hr where book_id = b.id and hr.member_id = :user_id) as memberHaveRead</select>
+        </field>
+        <field id="rating">
+            <select mapping="[rating]">(select avg(r.rate) from rating r where r.book_id = b.id) as rating</select>
         </field>
         <field id="wanttoread">
             <select mapping="[wanttoread]">(select count(*) from wanttoread wr where wr.book_id = b.id) as wanttoread</select>

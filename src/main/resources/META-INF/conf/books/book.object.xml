@@ -69,5 +69,28 @@
                 <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
             </in>
         </operation>
+
+        <operation id="doNotWantToRead">
+            <invocation>
+                <sql>
+                    delete from wanttoread where book_id = :book_id and member_id = :member_id
+                </sql>
+            </invocation>
+            <in>
+                <field id="id" mapping="['book_id']" param="book_id"/>
+                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+            </in>
+        </operation>
+        <operation id="haveNotRead">
+            <invocation>
+                <sql>
+                    delete from haveread where book_id = :book_id and member_id = :member_id
+                </sql>
+            </invocation>
+            <in>
+                <field id="id" mapping="['book_id']" param="book_id"/>
+                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+            </in>
+        </operation>
     </operations>
 </object>
