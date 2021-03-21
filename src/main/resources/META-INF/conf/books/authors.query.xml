@@ -3,7 +3,7 @@
     <list count-mapping="size()">
         <sql>
             select c.name
-            from (select distinct unnest(b.categories) as name from book b) c
+            from (select distinct unnest(b.authors) as name from book b) c
             where :filters
             order by name asc
             limit 10

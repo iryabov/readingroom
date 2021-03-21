@@ -33,7 +33,8 @@
                         </dependencies>
                     </input-text>
                     <auto-complete id="authors" label="${authors}" tags="true"
-                                   max-tag-text-length="30" required="true">
+                                   max-tag-text-length="30" required="true"
+                                   query-id="authors" value-field-id="name" search-filter-id="name">
                         <dependencies>
                             <set-value on="search" apply-on-init="false">search.authors</set-value>
                         </dependencies>
