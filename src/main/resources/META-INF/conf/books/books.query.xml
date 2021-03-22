@@ -63,12 +63,15 @@
                     normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).shorten(#this, 200)"/>
         </field>
         <field id="status">
-            <select mapping="[status]"
-                    default-value="NOT_AVAILABLE"
-                    normalize="@n2oMessageSourceAccessor.getMessage(#this.toLowerCase())"/>
+            <select mapping="[status]"/>
             <filters>
                 <eq filter-id="status" mapping="[status]">b.status = :status</eq>
             </filters>
+        </field>
+        <field id="statusText">
+            <select mapping="[status]"
+                    default-value="NOT_AVAILABLE"
+                    normalize="@n2oMessageSourceAccessor.getMessage(#this.toLowerCase())"/>
         </field>
         <field id="statusColor">
             <select mapping="[status]"

@@ -82,11 +82,8 @@
                             </button>
                         </toolbar>
                     </block>
-                    <block text-field-id="status">
-                        <badge class="text-uppercase">
-                            <switch value-field-id="status">
-                                <case value="NOT_AVAILABLE">warning</case>
-                            </switch>
+                    <block text-field-id="statusText">
+                        <badge class="text-uppercase" color="{statusColor}" visible="{status=='NOT_AVAILABLE'}">
                         </badge>
                     </block>
                 </col>
