@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+      name="Book shelf">
+    <regions>
+        <panel header="false" title="${newBooks}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${newBooks}</text>
+                        <button id="more" label="${more}" color="light" class="pull-right">
+                            <a href="#"/>
+                        </button>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="newBooks" ref-id="shelf"
+                   route="/new"
+                   query-id="books?sort=b.created_at"
+                   size="6">
+                <pre-filters>
+                </pre-filters>
+            </tiles>
+        </panel>
+        <panel title="${mostRequested}" collapsible="false">
+            <tiles id="mostRequested" ref-id="shelf"
+                   route="/mostRequested"
+                   query-id="books?sort=2"
+                   size="6">
+                <pre-filters>
+                </pre-filters>
+            </tiles>
+        </panel>
+        <panel title="${mostRead}" collapsible="false">
+            <tiles id="mostRead" ref-id="shelf"
+                   route="/mostRead"
+                   query-id="books?sort=3"
+                   size="6">
+                <pre-filters>
+                </pre-filters>
+            </tiles>
+        </panel>
+        <panel title="${allBooks}" collapsible="false">
+            <tiles id="all" route="/all" ref-id="shelf">
+                <pre-filters>
+                </pre-filters>
+            </tiles>
+        </panel>
+    </regions>
+</page>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <header xmlns="http://n2oapp.net/framework/config/schema/header-2.0"
-        brand-name="Books">
+        brand-name="Books" home-page-url="/#/">
     <nav>
         <page page-id="library" label="${library}" route="/library"/>
         <page page-id="orders" label="${orders}" route="/orders"/>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tiles xmlns="http://n2oapp.net/framework/config/schema/n2o-widget-4.0"
+       query-id="books?sort=b.created_at&amp;size=24"
+       cols-sm="2" cols-md="4" cols-lg="6">
+    <actions>
+        <action id="view">
+            <open-page page-id="bookCard" route="/:book_id/view" object-id="book">
+                <path-param name="book_id" value="{id}"/>
+            </open-page>
+        </action>
+    </actions>
+    <pagination show-count="false"/>
+    <content>
+        <block>
+            <image data="{cover}" action-id="view">
+            </image>
+        </block>
+        <block text-field-id="rating">
+            <rating half="true"/>
+        </block>
+        <block text-field-id="title">
+            <link action-id="view">
+                <!--                        <open-page page-id="bookCard" route="/:book_id/view" object-id="book">-->
+                <!--                            <path-param name="book_id" value="{id}"/>-->
+                <!--                        </open-page>-->
+            </link>
+        </block>
+        <block>
+            <text subtext-field-id="authors"/>
+        </block>
+    </content>
+</tiles>

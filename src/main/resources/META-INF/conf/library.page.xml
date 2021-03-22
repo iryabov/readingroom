@@ -10,7 +10,7 @@
     </toolbar>
     <regions>
 
-        <form id="categories">
+        <form id="filters">
             <fields>
                 <pills id="categories" no-label-block="true">
                     <options>
@@ -21,7 +21,9 @@
             </fields>
         </form>
 
-        <tiles id="books" query-id="books" cols-sm="2" cols-md="4" cols-lg="6">
+        <cards id="books" route="/books" query-id="books?sort=b.id" object-id="book"
+               height="250" vertical-align="top">
+            <pagination/>
             <actions>
                 <action id="view">
                     <open-page page-id="bookCard" route="/:book_id/view" object-id="book">
@@ -29,26 +31,66 @@
                     </open-page>
                 </action>
             </actions>
-            <pagination show-count="false"/>
             <content>
-                <block>
-                    <image data="{cover}" action-id="view">
-                    </image>
-                </block>
-                <block text-field-id="rating">
-                    <rating half="true"/>
-                </block>
-                <block text-field-id="title">
-                    <link action-id="view">
-<!--                        <open-page page-id="bookCard" route="/:book_id/view" object-id="book">-->
-<!--                            <path-param name="book_id" value="{id}"/>-->
-<!--                        </open-page>-->
-                    </link>
-                </block>
-                <block>
-                    <text subtext-field-id="authors"/>
-                </block>
+                <col size="2">
+                    <block>
+                        <image data="{cover}" action-id="view">
+
+                        </image>
+                    </block>
+                </col>
+                <col size="9">
+                    <block text-field-id="title">
+                        <link class="font-weight-bold" action-id="view"/>
+                    </block>
+                    <block text-field-id="authors">
+                        <text/>
+                    </block>
+                    <block text-field-id="rating">
+                        <rating half="true"/>
+                    </block>
+                    <block text-field-id="description">
+                        <link action-id="view"/>
+                    </block>
+                </col>
+                <col size="1">
+                    <block>
+                        <toolbar>
+                            <button id="wantToRead"
+                                    label="${wantToRead}" icon="fa fa-heart-o" type="icon"
+                                    visible="{!memberWantToRead}">
+                                <invoke operation-id="wantToRead" route="/wantToRead" message-on-success="false"/>
+                            </button>
+                            <button id="doNotWantToRead"
+                                    label="${doNotWantToRead}" icon="fa fa-heart" type="icon"
+                                    visible="{memberWantToRead}">
+                                <invoke operation-id="doNotWantToRead" route="/doNotWantToRead" message-on-success="false"/>
+                            </button>
+                        </toolbar>
+                    </block>
+                    <block>
+                        <toolbar>
+                            <button id="haveread"
+                                    label="${haveRead}" icon="fa fa-bookmark-o" type="icon"
+                                    visible="{!memberHaveRead}">
+                                <invoke operation-id="haveRead" route="/haveRead" message-on-success="false"/>
+                            </button>
+                            <button id="haveNotRead"
+                                    label="${haveNotRead}" icon="fa fa-bookmark" type="icon"
+                                    visible="{memberHaveRead}">
+                                <invoke operation-id="haveNotRead" route="/haveNotRead" message-on-success="false"/>
+                            </button>
+                        </toolbar>
+                    </block>
+                    <block text-field-id="status">
+                        <badge class="text-uppercase">
+                            <switch value-field-id="status">
+                                <case value="NOT_AVAILABLE">warning</case>
+                            </switch>
+                        </badge>
+                    </block>
+                </col>
             </content>
-        </tiles>
+        </cards>
     </regions>
 </page>
