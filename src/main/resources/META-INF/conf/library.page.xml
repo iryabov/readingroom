@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
-      name="${library}">
+<top-left-right-page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+                     name="${library}">
     <toolbar place="topRight">
         <button id="add" label="${addBook}" color="primary" widget-id="books">
             <open-page page-id="bookForm"
@@ -8,21 +8,46 @@
                        upload="defaults"/>
         </button>
     </toolbar>
-    <regions>
+    <top>
+        <form id="sorting"/>
+    </top>
+    <right width="20%">
+        <panel title="${categories}">
+            <form id="filters">
+                <fields>
+                    <radio-group id="categories" no-label-block="true" param="categories"
+                            query-id="categories">
+                    </radio-group>
+                    <radio-group id="status" no-label-block="true" param="status">
+                        <options>
+                            <option id="ALL" name="${all}"/>
+                            <option id="AVAILABLE" name="${available}"/>
+                            <option id="NOT_AVAILABLE" name="${not_available}"/>
+                        </options>
+                    </radio-group>
+                </fields>
 
-        <form id="filters">
-            <fields>
-                <pills id="categories" no-label-block="true">
-                    <options>
-                        <option id="1" name="Business"/>
-                        <option id="2" name="Programming"/>
-                    </options>
-                </pills>
-            </fields>
-        </form>
+            </form>
+        </panel>
+<!--        <panel title="${status}">-->
+<!--            <form id="status" upload="defaults">-->
+<!--                <fields>-->
+<!--                    <radio-group id="status" no-label-block="true" param="status">-->
+<!--                        <options>-->
+<!--                            <option id="ALL" name="${all}"/>-->
+<!--                            <option id="AVAILABLE" name="${available}"/>-->
+<!--                            <option id="NOT_AVAILABLE" name="${not_available}"/>-->
+<!--                        </options>-->
+<!--                    </radio-group>-->
+<!--                </fields>-->
+<!--            </form>-->
+<!--        </panel>-->
+
+    </right>
+    <left width="80%">
 
         <cards id="books" route="/books" query-id="books?sort=b.id" object-id="book"
-               height="250" vertical-align="top">
+               height="250" vertical-align="top" depends-on="filters">
             <pagination/>
             <actions>
                 <action id="view">
@@ -31,6 +56,10 @@
                     </open-page>
                 </action>
             </actions>
+            <pre-filters>
+                <in field-id="categories" ref-widget-id="filters" ref-model="resolve"
+                    param="categories"/>
+            </pre-filters>
             <content>
                 <col size="2">
                     <block>
@@ -47,7 +76,7 @@
                         <text/>
                     </block>
                     <block text-field-id="rating">
-                        <rating half="true"/>
+                        <rating half="true" show-tooltip="true"/>
                     </block>
                     <block text-field-id="description">
                         <link action-id="view"/>
@@ -64,7 +93,8 @@
                             <button id="doNotWantToRead"
                                     label="${doNotWantToRead}" icon="fa fa-heart" type="icon"
                                     visible="{memberWantToRead}">
-                                <invoke operation-id="doNotWantToRead" route="/doNotWantToRead" message-on-success="false"/>
+                                <invoke operation-id="doNotWantToRead" route="/doNotWantToRead"
+                                        message-on-success="false"/>
                             </button>
                         </toolbar>
                     </block>
@@ -89,5 +119,5 @@
                 </col>
             </content>
         </cards>
-    </regions>
-</page>
+    </left>
+</top-left-right-page>

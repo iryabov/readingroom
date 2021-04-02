@@ -15,4 +15,6 @@ class Review(
         var createdAt: LocalDate = LocalDate.now(),
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null
-)
+) {
+        constructor(): this(Book(), Member(), "")
+}

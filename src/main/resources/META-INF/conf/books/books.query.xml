@@ -83,5 +83,10 @@
         <field id="memberHaveRead">
             <select mapping="[memberHaveRead]"/>
         </field>
+        <field id="categories">
+            <filters>
+                <in filter-id="category" mapping="[category]">:category = any(categories)</in>
+            </filters>
+        </field>
     </fields>
 </query>

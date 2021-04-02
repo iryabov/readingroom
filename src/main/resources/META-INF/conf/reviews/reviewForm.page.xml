@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<simple-page xmlns="http://n2oapp.net/framework/config/schema/page-2.0">
+    <form query-id="reviews">
+        <fields>
+            <set field-label-location="left" field-label-width="100px">
+<!-- todo #{userId}               <hidden id="member.id" default-value="#{userId}"/>-->
+                <hidden id="member.avatar" default-value="#{picture}"/>
+                <hidden id="book.id" param="book_id"/>
+                <row>
+                    <col size="2">
+                        <image id="avatarImg" data="{member.avatar}" shape="circle"/>
+                    </col>
+                    <col size="10">
+                        <output-text id="member.name" class="font-weight-bold" no-label-block="true"/>
+                    </col>
+                </row>
+                <rating id="rating" label="${rateBook}"/>
+                <text-area id="description" no-label-block="true" placeholder="${whatDoYouThinkAboutBook}">
+                </text-area>
+            </set>
+        </fields>
+        <toolbar place="bottomLeft">
+            <button id="publish" label="${publish}" color="primary">
+                <invoke operation-id="addReview" route="/publish"
+                        close-on-success="true" refresh-on-success="true"/>
+            </button>
+        </toolbar>
+        <pre-filters>
+            <eq field-id="id" param="review_id"/>
+        </pre-filters>
+    </form>
+</simple-page>

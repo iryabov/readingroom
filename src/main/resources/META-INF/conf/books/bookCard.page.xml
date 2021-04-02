@@ -63,7 +63,8 @@
                                 <col size="2">
                                     <field id="status" class="pull-right" no-label-block="true">
                                         <controls>
-                                            <output-text id="status" no-label-block="true" class="`'text-uppercase badge badge-' + statusColor`"/>
+                                            <output-text id="status" no-label-block="true"
+                                                         class="`'text-uppercase badge badge-' + statusColor`"/>
                                         </controls>
                                     </field>
                                 </col>
@@ -128,5 +129,43 @@
                 <eq field-id="id" param="book_id"/>
             </pre-filters>
         </form>
+        <tabs>
+            <tab id="review" name="${reviews}">
+                <cards id="review" route="/review"
+                       query-id="reviews" height="180px">
+                    <toolbar place="topLeft">
+                        <button id="addReview" label="${addReview}" color="primary">
+                            <show-modal page-id="reviewForm"
+                                        route="/add"
+                                        upload="defaults"
+                                        page-name="${addingReview}"
+                                        backdrop="false" closable="true">
+                            </show-modal>
+                        </button>
+                    </toolbar>
+                    <content>
+                        <col size="2">
+                            <block>
+                                <image data="{member.avatar}" shape="circle"/>
+                            </block>
+                            <block text-field-id="member.name">
+                                <text subtext-field-id="createdAt" subtext-format="date DD.MM.YYYY"/>
+                            </block>
+                            <block text-field-id="rating">
+                                <rating/>
+                            </block>
+                        </col>
+                        <col size="10">
+                            <block text-field-id="description">
+                                <text/>
+                            </block>
+                        </col>
+                    </content>
+                    <pre-filters>
+                        <eq field-id="book.id" param="book_id"/>
+                    </pre-filters>
+                </cards>
+            </tab>
+        </tabs>
     </regions>
 </page>

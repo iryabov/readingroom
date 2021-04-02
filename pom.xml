@@ -12,23 +12,23 @@
 	<artifactId>readingroom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>reading-room</name>
-	<description>Home or corporate library to rate, review and book</description>
+	<description>Home or corporate books library to rate, review and book</description>
 	<properties>
 		<java.version>11</java.version>
 		<kotlin.version>1.4.30</kotlin.version>
-		<n2o.version>7.14.0</n2o.version>
+		<n2o.version>7.14.1</n2o.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>net.n2oapp.framework</groupId>
 			<artifactId>n2o-spring-boot-starter</artifactId>
-			<version>7.14.0</version>
+			<version>${n2o.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.n2oapp.framework</groupId>
 			<artifactId>n2o-web</artifactId>
-			<version>7.14.0</version>
+			<version>${n2o.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
