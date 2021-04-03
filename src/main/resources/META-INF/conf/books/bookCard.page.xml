@@ -18,33 +18,21 @@
                             </submit>
                         </rating>
                         <button id="preview" label="${readSnippet}" icon="fa fa-book" visible="{previewUrl}">
-                            <a href=":previewUrl" target="newWindow">
+                            <a href="redirect::previewUrl" target="newWindow">
                                 <path-param name="previewUrl" value="{previewUrl}"/>
                             </a>
                         </button>
-                        <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart-o">
+                        <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart-o" visible="{!memberWantToRead}">
                             <invoke operation-id="wantToRead" route="/wantToRead" message-on-success="false"/>
-                            <dependencies>
-                                <visibility>!memberWantToRead</visibility>
-                            </dependencies>
                         </button>
-                        <button id="doNotWantToRead" label="${wantToRead}" icon="fa fa-heart">
+                        <button id="doNotWantToRead" label="${wantToRead}" icon="fa fa-heart" visible="{memberWantToRead}">
                             <invoke operation-id="doNotWantToRead" route="/doNotWantToRead" message-on-success="false"/>
-                            <dependencies>
-                                <visibility>memberWantToRead</visibility>
-                            </dependencies>
                         </button>
-                        <button id="haveRead" label="${haveRead}" icon="fa fa-bookmark-o">
+                        <button id="haveRead" label="${haveRead}" icon="fa fa-bookmark-o" visible="{!memberHaveRead}">
                             <invoke operation-id="haveRead" route="/haveRead" message-on-success="false"/>
-                            <dependencies>
-                                <visibility>!memberHaveRead</visibility>
-                            </dependencies>
                         </button>
-                        <button id="haveNotRead" label="${haveRead}" icon="fa fa-bookmark">
+                        <button id="haveNotRead" label="${haveRead}" icon="fa fa-bookmark" visible="{memberHaveRead}">
                             <invoke operation-id="haveNotRead" route="/haveNotRead" message-on-success="false"/>
-                            <dependencies>
-                                <visibility>memberHaveRead</visibility>
-                            </dependencies>
                         </button>
                         <button id="takeRead" label="${takeRead}" color="success">
                             <show-modal page-id="bookingForm"
