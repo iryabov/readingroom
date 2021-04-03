@@ -6,7 +6,7 @@
             <set field-label-location="left" field-label-width="150px">
                 <output-text id="duration" label="${takeBook}" default-value="${bookingDuration} ${days}"/>
                 <date-time id="from" label="${bookingFrom}"
-                           date-format="${dateFormat}"/>
+                           date-format="${dateFormat}" min="{moment().format('YYYY-MM-DD')}"/>
             </set>
         </fields>
         <toolbar place="bottomLeft">

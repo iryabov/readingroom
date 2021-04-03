@@ -15,9 +15,34 @@
                 <field id="book.id" mapping="book.id"/>
                 <field id="member.id" mapping="member.id" domain="integer" default-value="1"/><!--todo #{userId}-->
                 <field id="from" mapping="bookingFrom" domain="localdate"/>
-                <field id="until" default-value="${bookingDuration}" normalize="#data[from].plusDays(${bookingDuration})" mapping="bookingUntil" domain="integer"/>
+                <field id="until" mapping="bookingUntil" default-value="${bookingDuration}" normalize="#data[from].plusDays(${bookingDuration})" domain="integer"/>
             </in>
+            <validations white-list="alreadyBooked"/>
         </operation>
-
+        
     </operations>
+    
+    <validations>
+        <constraint id="alreadyBooked" severity="danger"
+                    result="size()==0" message="${alreadyBooked}">
+            <invocation>
+                <sql><![CDATA[
+                select bg.booking_until as fact_until
+                    from booking bg
+                    where bg.book_id = :book_id
+                      and bg.booking_from < :booking_until
+                      and bg.booking_until > :booking_from
+                ]]>
+                </sql>
+            </invocation>
+            <in>
+                <field id="book.id" mapping="['book_id']"/>
+                <field id="from" mapping="['booking_from']" domain="localdate"/>
+                <field id="until" mapping="['booking_until']" default-value="${bookingDuration}" normalize="#data[from].plusDays(${bookingDuration})" domain="integer"/>
+            </in>
+            <out>
+                <field id="factUntil" mapping="size() > 0 ? [0][fact_until] : null"/>
+            </out>
+        </constraint>
+    </validations>
 </object>
