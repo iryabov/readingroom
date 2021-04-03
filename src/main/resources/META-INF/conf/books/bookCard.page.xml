@@ -34,7 +34,7 @@
                         <button id="haveNotRead" label="${haveRead}" icon="fa fa-bookmark" visible="{memberHaveRead}">
                             <invoke operation-id="haveNotRead" route="/haveNotRead" message-on-success="false"/>
                         </button>
-                        <button id="takeRead" label="${takeRead}" color="success">
+                        <button id="takeRead" label="${takeRead}" color="success" visible="{status=='Available'}">
                             <show-modal page-id="bookingForm"
                                         route="/add"
                                         upload="defaults"
@@ -83,13 +83,13 @@
                         <set>
                             <row>
                                 <col size="1">
-                                    <output-text id="rating" icon="fa fa-star" no-label-block="true"/>
+                                    <output-text id="rating" icon="fa fa-star" no-label-block="true" visible="{rating}"/>
                                 </col>
                                 <col size="1">
                                     <output-text id="wanttoread" icon="fa fa-heart" no-label-block="true"/>
                                 </col>
                                 <col size="1">
-                                    <output-text id="haveread" icon="fa fa-book" no-label-block="true"/>
+                                    <output-text id="haveread" icon="fa fa-bookmark" no-label-block="true"/>
                                 </col>
                                 <col size="6"/>
                             </row>
@@ -164,7 +164,7 @@
             </tab>
             <tab id="booking" name="${readingNow}">
                 <cards id="booking" route="/theyReadingNow"
-                       query-id="booking" height="100px">
+                       query-id="booking" height="100px" >
                     <toolbar place="topLeft">
                         <button id="addBooking" label="${toBook}" color="primary">
                             <show-modal page-id="bookingForm"
@@ -173,6 +173,9 @@
                                         page-name="${booking}"
                                         closable="true">
                             </show-modal>
+                            <dependencies>
+                                <visibility ref-widget-id="book" ref-model="resolve">status=='Available'</visibility>
+                            </dependencies>
                         </button>
                     </toolbar>
                     <content>
