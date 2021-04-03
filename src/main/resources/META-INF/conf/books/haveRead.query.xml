@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
+       object-id="book">
+    <list>
+        <sql>
+            select :select
+            from haveread r
+            join member m on m.id = r.member_id
+            join book b on b.id = r.book_id
+            where :filters
+            limit :limit offset :offset
+        </sql>
+    </list>
+    <count count-mapping="[0].cnt">
+        <sql>
+            select count(*) as cnt
+            from haveread r
+            join member m on m.id = r.member_id
+            join book b on b.id = r.book_id
+            where :filters
+        </sql>
+    </count>
+    <fields>
+        <field id="id">
+        </field>
+        <field id="book.id">
+            <select mapping="[book_id]">r.book_id as book_id</select>
+            <filters>
+                <eq filter-id="book.id" mapping="[book_id]">r.book_id = :book_id</eq>
+            </filters>
+        </field>
+        <field id="member.id">
+            <select mapping="[member_id]">r.member_id as member_id</select>
+            <filters>
+                <eq filter-id="member.id" mapping="[member_id]">r.member_id = :member_id</eq>
+            </filters>
+        </field>
+        <field id="member.name">
+            <select mapping="[member_name]">m.name as member_name</select>
+        </field>
+        <field id="member.avatar">
+            <select mapping="[member_avatar]">m.avatar as member_avatar</select>
+        </field>
+        <field id="book.title">
+            <select mapping="[book_title]">b.title as book_title</select>
+        </field>
+        <field id="book.cover">
+            <select mapping="[book_cover]">b.cover as book_cover</select>
+        </field>
+    </fields>
+</query>

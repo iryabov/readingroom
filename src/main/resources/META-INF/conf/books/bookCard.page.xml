@@ -12,7 +12,7 @@
                                 <image id="coverImg" data="{cover}"/>
                             </controls>
                         </field>
-                        <rating id="memberRating" no-label-block="true" half="true">
+                        <rating id="memberRating" no-label-block="true" label="Your rate" half="true">
                             <submit operation-id="rateBook" route="/rate" message-on-success="false">
                                 <form-param id="rate" value="{memberRating}"/>
                             </submit>
@@ -45,6 +45,14 @@
                             <dependencies>
                                 <visibility>memberHaveRead</visibility>
                             </dependencies>
+                        </button>
+                        <button id="takeRead" label="${takeRead}" color="success">
+                            <show-modal page-id="bookingForm"
+                                        route="/add"
+                                        upload="defaults"
+                                        page-name="${booking}"
+                                        closable="true">
+                            </show-modal>
                         </button>
                         <button id="edit" label="${edit}" color="primary">
                             <open-page page-id="bookForm"
@@ -129,9 +137,9 @@
                 <eq field-id="id" param="book_id"/>
             </pre-filters>
         </form>
-        <tabs active-param="tab">
+        <tabs active-param="tab" always-refresh="true">
             <tab id="review" name="${reviews}">
-                <cards id="review" route="/review"
+                <cards id="review" route="/reviews"
                        query-id="reviews" height="150px">
                     <toolbar place="topLeft">
                         <button id="addReview" label="${addReview}" color="primary">
@@ -166,8 +174,8 @@
                     </pre-filters>
                 </cards>
             </tab>
-            <tab id="booking" name="${booking}">
-                <cards id="booking" route="/booking"
+            <tab id="booking" name="${readingNow}">
+                <cards id="booking" route="/theyReadingNow"
                        query-id="booking" height="100px">
                     <toolbar place="topLeft">
                         <button id="addBooking" label="${toBook}" color="primary">
@@ -197,6 +205,46 @@
                     <pre-filters>
                         <eq field-id="book.id" param="book_id"/>
                         <more field-id="until" value="{moment().format('YYYY-MM-DD')}" ref-widget-id="booking"/>
+                    </pre-filters>
+                </cards>
+            </tab>
+            <tab id="wantToRead" name="${wantToRead}">
+                <cards id="wantToRead" route="/theyWantToRead"
+                       query-id="wantToRead" height="100px">
+                    <content>
+                        <col size="2">
+                            <block>
+                                <image data="{member.avatar}" shape="circle"/>
+                            </block>
+                        </col>
+                        <col size="10">
+                            <block text-field-id="member.name">
+                                <text/>
+                            </block>
+                        </col>
+                    </content>
+                    <pre-filters>
+                        <eq field-id="book.id" param="book_id"/>
+                    </pre-filters>
+                </cards>
+            </tab>
+            <tab id="haveRead" name="${haveRead}">
+                <cards id="haveRead" route="/theyHaveRead"
+                       query-id="haveRead" height="100px">
+                    <content>
+                        <col size="2">
+                            <block>
+                                <image data="{member.avatar}" shape="circle"/>
+                            </block>
+                        </col>
+                        <col size="10">
+                            <block text-field-id="member.name">
+                                <text/>
+                            </block>
+                        </col>
+                    </content>
+                    <pre-filters>
+                        <eq field-id="book.id" param="book_id"/>
                     </pre-filters>
                 </cards>
             </tab>
