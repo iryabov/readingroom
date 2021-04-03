@@ -32,5 +32,6 @@ n2o:
       enabled: true
   access:
     schema.id: library
+bookingDuration: 14
 
 

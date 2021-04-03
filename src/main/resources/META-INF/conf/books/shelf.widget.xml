@@ -9,7 +9,6 @@
             </open-page>
         </action>
     </actions>
-    <pagination show-count="false" />
     <content>
         <block>
             <image data="{cover}" action-id="view">

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object xmlns="http://n2oapp.net/framework/config/schema/object-4.0"
+        entity-class="com.github.iryabov.readingroom.entity.Booking">
+    <operations>
+        <operation id="addBooking" submit-label="${toBook}">
+            <invocation>
+                <java method="save" class="com.github.iryabov.readingroom.repository.BookingRepository">
+                    <spring/>
+                    <arguments>
+                        <argument name="entity" type="entity"/>
+                    </arguments>
+                </java>
+            </invocation>
+            <in>
+                <field id="book.id" mapping="book.id"/>
+                <field id="member.id" mapping="member.id" domain="integer" default-value="1"/><!--todo #{userId}-->
+                <field id="from" mapping="bookingFrom" domain="localdate"/>
+                <field id="until" default-value="${bookingDuration}" normalize="#data[from].plusDays(${bookingDuration})" mapping="bookingUntil" domain="integer"/>
+            </in>
+        </operation>
+
+    </operations>
+</object>

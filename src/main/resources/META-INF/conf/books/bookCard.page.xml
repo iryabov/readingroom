@@ -17,7 +17,7 @@
                                 <form-param id="rate" value="{memberRating}"/>
                             </submit>
                         </rating>
-                        <button id="preview" label="${readSnippet}" visible="{previewUrl}">
+                        <button id="preview" label="${readSnippet}" icon="fa fa-book" visible="{previewUrl}">
                             <a href=":previewUrl" target="newWindow">
                                 <path-param name="previewUrl" value="{previewUrl}"/>
                             </a>
@@ -129,17 +129,17 @@
                 <eq field-id="id" param="book_id"/>
             </pre-filters>
         </form>
-        <tabs>
+        <tabs active-param="tab">
             <tab id="review" name="${reviews}">
                 <cards id="review" route="/review"
-                       query-id="reviews" height="180px">
+                       query-id="reviews" height="150px">
                     <toolbar place="topLeft">
                         <button id="addReview" label="${addReview}" color="primary">
                             <show-modal page-id="reviewForm"
                                         route="/add"
                                         upload="defaults"
                                         page-name="${addingReview}"
-                                        backdrop="false" closable="true">
+                                        closable="true">
                             </show-modal>
                         </button>
                     </toolbar>
@@ -163,6 +163,40 @@
                     </content>
                     <pre-filters>
                         <eq field-id="book.id" param="book_id"/>
+                    </pre-filters>
+                </cards>
+            </tab>
+            <tab id="booking" name="${booking}">
+                <cards id="booking" route="/booking"
+                       query-id="booking" height="100px">
+                    <toolbar place="topLeft">
+                        <button id="addBooking" label="${toBook}" color="primary">
+                            <show-modal page-id="bookingForm"
+                                        route="/add"
+                                        upload="defaults"
+                                        page-name="${booking}"
+                                        closable="true">
+                            </show-modal>
+                        </button>
+                    </toolbar>
+                    <content>
+                        <col size="2">
+                            <block>
+                                <image data="{member.avatar}" shape="circle"/>
+                            </block>
+                            <block text-field-id="member.name">
+                                <text/>
+                            </block>
+                        </col>
+                        <col size="10">
+                            <block text-field-id="period">
+                                <text/>
+                            </block>
+                        </col>
+                    </content>
+                    <pre-filters>
+                        <eq field-id="book.id" param="book_id"/>
+                        <more field-id="until" value="{moment().format('YYYY-MM-DD')}" ref-widget-id="booking"/>
                     </pre-filters>
                 </cards>
             </tab>

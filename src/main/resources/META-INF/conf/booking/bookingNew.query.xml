@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0">
+    <unique filters="book.id" result-mapping="[0]">
+        <sql>
+            select
+              b.id as book_id,
+              b.title as book_title,
+              b.cover as book_cover,
+              (select max(booking_until) from booking bg where bg.book_id = b.id) as booking_from
+            from book b
+            where b.id = :book_id
+        </sql>
+    </unique>
+    <fields>
+        <field id="id">
+            <filters>
+                <eq filter-id="id"/>
+            </filters>
+        </field>
+        <field id="book.id">
+            <select mapping="[book_id]"/>
+            <filters>
+                <eq filter-id="book.id" mapping="[book_id]"/>
+            </filters>
+        </field>
+        <field id="from" domain="localdate">
+            <select mapping="[booking_from]"/>
+        </field>
+        <field id="book.title">
+            <select mapping="[book_title]"/>
+        </field>
+        <field id="book.cover">
+            <select mapping="[book_cover]">b.cover as book_cover</select>
+        </field>
+    </fields>
+</query>
