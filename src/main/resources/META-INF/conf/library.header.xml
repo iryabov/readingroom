@@ -3,10 +3,9 @@
         brand-name="Books" home-page-url="/#/">
     <nav>
         <page page-id="library" label="${library}" route="/library"/>
-        <page page-id="orders" label="${orders}" route="/orders"/>
         <page page-id="members" label="${readers}" route="/readers"/>
     </nav>
     <extra-menu>
-        <a label="#{name}" href="/#/" icon="fa fa-user"/>
+        <page label="#{name}" page-id="profile" icon="fa fa-user"/>
     </extra-menu>
 </header>

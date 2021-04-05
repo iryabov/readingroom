@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+      name="Profile">
+    <regions>
+        <form>
+            <fields>
+                <hidden id="avatar" default-value="#{picture}"/>
+                <hidden id="name" default-value="#{name}"/>
+                <image data="{avatar}" shape="circle"/>
+                <text class="h1">${hello}, {name}</text>
+            </fields>
+        </form>
+    </regions>
+</page>
