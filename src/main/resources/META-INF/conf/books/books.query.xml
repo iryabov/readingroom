@@ -65,7 +65,7 @@
         <field id="status">
             <select mapping="[status]"/>
             <filters>
-                <eq filter-id="status" mapping="[status]">b.status = :status</eq>
+                <eq filter-id="status" mapping="[status]">(:status = 'ALL' or b.status = :status)</eq>
             </filters>
         </field>
         <field id="statusText">
@@ -85,7 +85,7 @@
         </field>
         <field id="categories">
             <filters>
-                <in filter-id="category" mapping="[category]">:category = any(categories)</in>
+                <eq filter-id="category" mapping="[category]">:category = any(categories)</eq>
             </filters>
         </field>
     </fields>

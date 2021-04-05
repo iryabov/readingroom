@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <top-left-right-page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
                      name="${library}">
-    <toolbar place="topRight">
+    <toolbar place="topLeft">
         <button id="add" label="${addBook}" color="primary" widget-id="books">
             <open-page page-id="bookForm"
                        submit-operation-id="saveBook"
@@ -12,13 +12,13 @@
         <form id="sorting"/>
     </top>
     <right width="20%">
-        <panel title="${categories}">
-            <form id="filters">
+        <panel title="${filters}" routable="false">
+            <form id="filters" route="/">
                 <fields>
-                    <radio-group id="categories" no-label-block="true" param="categories"
+                    <radio-group id="category" label="${categories}" param="category"
                             query-id="categories">
                     </radio-group>
-                    <radio-group id="status" no-label-block="true" param="status">
+                    <radio-group id="status" label="${status}" param="status">
                         <options>
                             <option id="ALL" name="${all}"/>
                             <option id="AVAILABLE" name="${available}"/>
@@ -29,19 +29,6 @@
 
             </form>
         </panel>
-<!--        <panel title="${status}">-->
-<!--            <form id="status" upload="defaults">-->
-<!--                <fields>-->
-<!--                    <radio-group id="status" no-label-block="true" param="status">-->
-<!--                        <options>-->
-<!--                            <option id="ALL" name="${all}"/>-->
-<!--                            <option id="AVAILABLE" name="${available}"/>-->
-<!--                            <option id="NOT_AVAILABLE" name="${not_available}"/>-->
-<!--                        </options>-->
-<!--                    </radio-group>-->
-<!--                </fields>-->
-<!--            </form>-->
-<!--        </panel>-->
 
     </right>
     <left width="80%">
@@ -57,8 +44,12 @@
                 </action>
             </actions>
             <pre-filters>
-                <in field-id="categories" ref-widget-id="filters" ref-model="resolve"
-                    param="categories"/>
+                <eq field-id="categories"
+                    ref-widget-id="filters" ref-model="resolve"
+                    value="{category.name}"/>
+                <eq field-id="status"
+                    ref-widget-id="filters" ref-model="resolve"
+                    value="{status.id}"/>
             </pre-filters>
             <content>
                 <col size="2">

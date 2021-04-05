@@ -165,19 +165,6 @@
             <tab id="booking" name="${readingNow}">
                 <cards id="booking" route="/theyReadingNow"
                        query-id="booking" height="100px" >
-                    <toolbar place="topLeft">
-                        <button id="addBooking" label="${toBook}" color="primary">
-                            <show-modal page-id="bookingForm"
-                                        route="/add"
-                                        upload="defaults"
-                                        page-name="${booking}"
-                                        closable="true">
-                            </show-modal>
-                            <dependencies>
-                                <visibility ref-widget-id="book" ref-model="resolve">status=='Available'</visibility>
-                            </dependencies>
-                        </button>
-                    </toolbar>
                     <content>
                         <col size="2">
                             <block>
