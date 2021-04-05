@@ -88,7 +88,6 @@
                     </radio-group>
                     <input-select id="createdBy" label="${createdBy}"
                                   query-id="members" label-field-id="name" search-filter-id="name">
-                        <!--                        todo def-val-->
                     </input-select>
                     <output-text id="createdAt" label="${createdAt}" visible="{createdAt}"/>
                 </line>

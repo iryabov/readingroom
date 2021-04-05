@@ -17,8 +17,7 @@
         </field>
         <field id="userId">
             <filters>
-<!--todo #{userId}-->
-                <eq filter-id="userId" default-value="1" mapping="[user_id]"/>
+                <eq filter-id="userId" default-value="#{userId}" mapping="[user_id]"/>
             </filters>
         </field>
         <field id="status">
@@ -46,8 +45,7 @@
             <select mapping="[language]">b.language as language</select>
         </field>
         <field id="createdBy">
-            <!--todo def-val-->
-            <select mapping="[created_by_name]" default-value="Igor Ryabov">(select m.name from member m where m.id = b.created_by) as created_by_name</select>
+            <select mapping="[created_by_name]" default-value="#{name}">(select m.name from member m where m.id = b.created_by) as created_by_name</select>
         </field>
         <field id="createdAt">
             <select mapping="[created_at]">b.created_at as created_at</select>

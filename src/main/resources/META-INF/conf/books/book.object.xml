@@ -13,7 +13,7 @@
             </invocation>
             <in>
                 <field id="id" mapping="id" param="book_id"/>
-                <field id="member.id" mapping="createdBy.id" domain="integer" default-value="1"/><!--todo #{userId}-->
+                <field id="member.id" mapping="createdBy.id" domain="integer" default-value="#{userId}"/>
                 <field id="cover.url" mapping="cover"/>
                 <field id="title" mapping="title"/>
                 <field id="authors" mapping="authors"/>
@@ -40,7 +40,7 @@
             </invocation>
             <in>
                 <field id="id" mapping="['book_id']" param="book_id"/>
-                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+                <field id="member.id" default-value="#{userId}" mapping="['member_id']"/>
                 <field id="rate" mapping="['rate']"/>
                 <field id="now" default-value="1" normalize="T(java.time.LocalDate).now()" mapping="['created_at']"/>
             </in>
@@ -54,7 +54,7 @@
             </invocation>
             <in>
                 <field id="id" mapping="['book_id']" param="book_id"/>
-                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+                <field id="member.id" default-value="#{userId}" mapping="['member_id']"/>
             </in>
         </operation>
         <operation id="haveRead">
@@ -66,7 +66,7 @@
             </invocation>
             <in>
                 <field id="id" mapping="['book_id']" param="book_id"/>
-                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+                <field id="member.id" default-value="#{userId}" mapping="['member_id']"/>
             </in>
         </operation>
 
@@ -78,7 +78,7 @@
             </invocation>
             <in>
                 <field id="id" mapping="['book_id']" param="book_id"/>
-                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+                <field id="member.id" default-value="#{userId}" mapping="['member_id']"/>
             </in>
         </operation>
         <operation id="haveNotRead">
@@ -89,7 +89,7 @@
             </invocation>
             <in>
                 <field id="id" mapping="['book_id']" param="book_id"/>
-                <field id="member.id" default-value="1" mapping="['member_id']"/><!--todo #{userId}-->
+                <field id="member.id" default-value="#{userId}" mapping="['member_id']"/>
             </in>
         </operation>
     </operations>

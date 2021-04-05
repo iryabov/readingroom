@@ -13,7 +13,7 @@
             </invocation>
             <in>
                 <field id="book.id" mapping="book.id"/>
-                <field id="member.id" mapping="member.id" domain="integer" default-value="1"/><!--todo #{userId}-->
+                <field id="member.id" mapping="member.id" domain="integer" default-value="#{userId}"/>
                 <field id="from" mapping="bookingFrom" domain="localdate"/>
                 <field id="until" mapping="bookingUntil" default-value="${bookingDuration}" normalize="#data[from].plusDays(${bookingDuration})" domain="integer"/>
             </in>

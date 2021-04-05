@@ -3,8 +3,7 @@
     <form query-id="reviews">
         <fields>
             <set field-label-location="left" field-label-width="100px">
-                <!-- todo #{userId}-->
-<!--                <hidden id="member.id" default-value="#{userId}"/>-->
+                <hidden id="member.id" default-value="#{userId}"/>
                 <hidden id="book.id" param="book_id"/>
                 <row>
                     <col size="2">

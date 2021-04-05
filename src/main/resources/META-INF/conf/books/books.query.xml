@@ -37,8 +37,7 @@
         </field>
         <field id="userId">
             <filters>
-                <!--todo #{userId}-->
-                <eq filter-id="userId" default-value="1" mapping="[user_id]"/>
+                <eq filter-id="userId" default-value="#{userId}" mapping="[user_id]"/>
             </filters>
         </field>
         <field id="title">
