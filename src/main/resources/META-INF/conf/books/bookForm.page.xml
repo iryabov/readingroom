@@ -89,7 +89,7 @@
                     <input-select id="createdBy" label="${createdBy}"
                                   query-id="members" label-field-id="name" search-filter-id="name">
                     </input-select>
-                    <output-text id="createdAt" label="${createdAt}" visible="{createdAt}"/>
+                    <output-text id="createdAt" label="${createdAt}" visible="{createdAt}" format="date ${dateFormat}"/>
                 </line>
             </fields>
             <pre-filters>

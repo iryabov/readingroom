@@ -7,6 +7,6 @@
         <page page-id="members" label="${readers}" route="/readers"/>
     </nav>
     <extra-menu>
-        <!--        <a label="#{name}" href="/#/library" icon="fa fa-user"/>-->
+        <a label="#{name}" href="/#/" icon="fa fa-user"/>
     </extra-menu>
 </header>
