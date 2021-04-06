@@ -92,5 +92,18 @@
                 <field id="member.id" default-value="#{userId}" mapping="['member_id']"/>
             </in>
         </operation>
+        <operation id="deleteBook">
+            <invocation>
+                <java method="deleteById" class="com.github.iryabov.readingroom.repository.BookRepository">
+                    <arguments>
+                        <argument name="id" type="primitive"/>
+                    </arguments>
+                    <spring/>
+                </java>
+            </invocation>
+            <in>
+                <field id="id" mapping="[0]"/>
+            </in>
+        </operation>
     </operations>
 </object>

@@ -49,6 +49,12 @@
                                        route="/edit"
                                        page-name="${edit}"/>
                         </button>
+                        <button id="deleteBook" label="${delete}" color="danger"
+                                confirm="true">
+                            <invoke operation-id="deleteBook"
+                                    close-on-success="true"
+                                    refresh-on-success="true"/>
+                        </button>
                     </col>
                     <col size="7">
                         <set>
