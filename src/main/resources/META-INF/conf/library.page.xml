@@ -16,7 +16,11 @@
             <form id="filters" route="/">
                 <fields>
                     <radio-group id="category" label="${categories}" param="category"
-                            query-id="categories">
+                                 label-field-id="localizedName"
+                                 query-id="categories">
+                        <pre-filters>
+                            <eq field-id="all" value="true"/>
+                        </pre-filters>
                     </radio-group>
                     <radio-group id="status" label="${status}" param="status">
                         <options>

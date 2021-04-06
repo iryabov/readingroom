@@ -5,6 +5,7 @@
             select c.name
             from (select distinct unnest(b.categories) as name from book b) c
             where :filters
+            union select 'All' as name where :all = true
             order by name asc
             limit 10
         </sql>
@@ -18,6 +19,15 @@
                       normalize="toLowerCase()">lower(c.name) like '%'||:name||'%'</like>
             </filters>
             <sorting/>
+        </field>
+        <field id="localizedName">
+            <select mapping="[name]"
+                    normalize="@n2oMessageSourceAccessor.getMessage(#this.toLowerCase(), #this)"/>
+        </field>
+        <field id="all">
+            <filters>
+                <eq filter-id="all" default-value="false"/>
+            </filters>
         </field>
         <field id="undefined"><!--todo-->
             <sorting/>

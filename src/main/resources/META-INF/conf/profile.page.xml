@@ -6,8 +6,14 @@
             <fields>
                 <hidden id="avatar" default-value="#{picture}"/>
                 <hidden id="name" default-value="#{name}"/>
-                <image data="{avatar}" shape="circle"/>
-                <text class="h1">${hello}, {name}</text>
+                <row>
+                    <col size="1">
+                        <image data="{avatar}" shape="circle"/>
+                    </col>
+                    <col size="11">
+                        <text class="h1">${hello}, {name}</text>
+                    </col>
+                </row>
             </fields>
         </form>
     </regions>

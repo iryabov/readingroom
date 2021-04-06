@@ -84,7 +84,7 @@
         </field>
         <field id="categories">
             <filters>
-                <eq filter-id="category" mapping="[category]">:category = any(categories)</eq>
+                <eq filter-id="category" mapping="[category]">(:category = 'All' or :category = any(categories))</eq>
             </filters>
         </field>
     </fields>
