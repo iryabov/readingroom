@@ -8,13 +8,15 @@
                     <row>
                         <text id="title" class="h5">${newBooks}</text>
                         <button id="more" label="${more}" color="light" class="pull-right">
-                            <a href="#"/>
+                            <open-page page-id="library?sort=b.created_at" page-name="${newBooks}" route="/catalog/new">
+                                <query-param name="status" value="AVAILABLE"/>
+                            </open-page>
                         </button>
                     </row>
                 </fields>
             </form>
             <tiles id="newBooks" ref-id="shelf"
-                   route="/new"
+                   route="/catalog/  new"
                    query-id="books?sort=b.created_at"
                    size="6">
                 <pre-filters>
@@ -28,7 +30,9 @@
                     <row>
                         <text id="title" class="h5">${mostRequested}</text>
                         <button id="more" label="${more}" color="light" class="pull-right">
-                            <a href="#"/>
+                            <open-page page-id="library?sort=2" page-name="${mostRequested}" route="/catalog/requested">
+                                <query-param name="status" value="NOT_AVAILABLE"/>
+                            </open-page>
                         </button>
                     </row>
                 </fields>
@@ -48,7 +52,7 @@
                     <row>
                         <text id="title" class="h5">${mostRead}</text>
                         <button id="more" label="${more}" color="light" class="pull-right">
-                            <a href="#"/>
+                            <open-page page-id="library?sort=3" page-name="${mostRead}" route="/catalog/read"/>
                         </button>
                     </row>
                 </fields>
@@ -67,7 +71,9 @@
                     <row>
                         <text id="title" class="h5">${allAvailableBooks}</text>
                         <button id="more" label="${more}" color="light" class="pull-right">
-                            <a href="#"/>
+                            <open-page page-id="library?sort=1" page-name="${allBooks}" route="/catalog/all">
+                                <query-param name="status" value="AVAILABLE"/>
+                            </open-page>
                         </button>
                     </row>
                 </fields>

@@ -50,10 +50,17 @@
             <select mapping="[member_avatar]">m.avatar as member_avatar</select>
         </field>
         <field id="book.title">
-            <select mapping="[book_title]">b.title as book_title</select>
+            <select mapping="[book_title]"
+                    normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).shorten(#this, 50)">b.title as book_title</select>
+        </field>
+        <field id="book.fullTitle">
+            <select mapping="[book_title]"/>
         </field>
         <field id="book.cover">
             <select mapping="[book_cover]">b.cover as book_cover</select>
+        </field>
+        <field id="book.authors">
+            <select mapping="[book_authors]">array_to_string(b.authors, ', ', '*') as book_authors</select>
         </field>
         <field id="createdAt" domain="localdate">
             <select mapping="[created_at]">r.created_at as created_at</select>

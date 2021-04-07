@@ -3,6 +3,6 @@
         <object-access object-id="book" operations="haveNotRead,doNotWantToRead,haveRead,wantToRead,rateBook,saveBook"/>
         <object-access object-id="booking" operations="addBooking"/>
         <object-access object-id="member"/>
-        <object-access object-id="review" operations="addReview"/>
+        <object-access object-id="review" operations="saveReview, deleteReview"/>
     </authenticated>
 </access>

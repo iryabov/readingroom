@@ -37,7 +37,7 @@
     </right>
     <left width="80%">
 
-        <cards id="books" route="/books" query-id="books?sort=b.id" object-id="book"
+        <cards id="books" route="/books" query-id="books?sort=${sort}" object-id="book"
                height="250" vertical-align="top" depends-on="filters">
             <pagination/>
             <actions>

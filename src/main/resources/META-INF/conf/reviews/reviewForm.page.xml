@@ -10,17 +10,20 @@
                         <image data="{book.cover}"/>
                     </col>
                     <col size="10">
-                        <output-text id="member.name" class="font-weight-bold" no-label-block="true"/>
+                        <output-text id="book.fullTitle" class="font-weight-bold" no-label-block="true"/>
+                        <output-text id="book.authors" no-label-block="true"/>
                     </col>
                 </row>
                 <rating id="rating" label="${rateBook}"/>
-                <text-area id="description" no-label-block="true" placeholder="${whatDoYouThinkAboutBook}">
+                <text-area id="description" no-label-block="true"
+                           placeholder="${whatDoYouThinkAboutBook}"
+                            min-rows="5">
                 </text-area>
             </set>
         </fields>
         <toolbar place="bottomLeft">
             <button id="publish" label="${publish}" color="primary">
-                <invoke operation-id="addReview" route="/publish"
+                <invoke operation-id="saveReview" route="/publish"
                         close-on-success="true" refresh-on-success="true"/>
             </button>
         </toolbar>
