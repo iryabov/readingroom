@@ -18,30 +18,66 @@
                    query-id="books?sort=b.created_at"
                    size="6">
                 <pre-filters>
+                    <eq field-id="status" value="AVAILABLE"/>
                 </pre-filters>
             </tiles>
         </panel>
-        <panel title="${mostRequested}" collapsible="false">
+        <panel header="false" title="${mostRequested}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${mostRequested}</text>
+                        <button id="more" label="${more}" color="light" class="pull-right">
+                            <a href="#"/>
+                        </button>
+                    </row>
+                </fields>
+            </form>
             <tiles id="mostRequested" ref-id="shelf"
-                   route="/mostRequested"
+                   route="/requested"
                    query-id="books?sort=2"
                    size="6">
                 <pre-filters>
+                    <eq field-id="status" value="NOT_AVAILABLE"/>
                 </pre-filters>
             </tiles>
         </panel>
-        <panel title="${mostRead}" collapsible="false">
+        <panel header="false" title="${mostRead}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${mostRead}</text>
+                        <button id="more" label="${more}" color="light" class="pull-right">
+                            <a href="#"/>
+                        </button>
+                    </row>
+                </fields>
+            </form>
             <tiles id="mostRead" ref-id="shelf"
-                   route="/mostRead"
+                   route="/read"
                    query-id="books?sort=3"
                    size="6">
                 <pre-filters>
                 </pre-filters>
             </tiles>
         </panel>
-        <panel title="${allBooks}" collapsible="false">
-            <tiles id="all" route="/all" ref-id="shelf">
+        <panel header="false" title="${allAvailableBooks}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${allAvailableBooks}</text>
+                        <button id="more" label="${more}" color="light" class="pull-right">
+                            <a href="#"/>
+                        </button>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="allAvailableBooks"
+                   route="/available"
+                   ref-id="shelf"
+                   size="6">
                 <pre-filters>
+                    <eq field-id="status" value="AVAILABLE"/>
                 </pre-filters>
             </tiles>
         </panel>
