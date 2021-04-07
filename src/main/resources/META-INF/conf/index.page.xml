@@ -16,7 +16,7 @@
                 </fields>
             </form>
             <tiles id="newBooks" ref-id="shelf"
-                   route="/catalog/new"
+                   route="/new"
                    query-id="books?sort=b.created_at"
                    size="6">
                 <pre-filters>

@@ -183,9 +183,15 @@
                                 <text/>
                             </block>
                         </col>
-                        <col size="10">
-                            <block text-field-id="period">
-                                <text/>
+                        <col size="8">
+                            <block text-field-id="period" >
+                                <text class="font-weight-bold"/>
+                            </block>
+                        </col>
+                        <col size="2">
+                            <block text-field-id="status">
+                                <badge class="text-uppercase" color="success">
+                                </badge>
                             </block>
                         </col>
                     </content>

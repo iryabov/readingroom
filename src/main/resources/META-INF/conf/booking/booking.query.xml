@@ -8,7 +8,7 @@
             join member m on m.id = bg.member_id
             join book b on b.id = bg.book_id
             where :filters
-            order by bg.booking_from desc
+            order by bg.booking_from asc
             limit :limit offset :offset
         </sql>
     </list>
@@ -36,6 +36,11 @@
             <filters>
                 <more filter-id="until" mapping="[until]">bg.booking_until >= :until</more>
             </filters>
+        </field>
+        <field id="status">
+            <select mapping="[status]" normalize="#this ? @n2oMessageSourceAccessor.getMessage('readingNow'):null"><![CDATA[
+            (bg.booking_from <= current_date and bg.booking_until >= current_date) as status
+            ]]></select>
         </field>
         <field id="book.id">
             <select mapping="[book_id]">bg.book_id as book_id</select>

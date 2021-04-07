@@ -29,7 +29,8 @@
             </filters>
         </field>
         <field id="description">
-            <select mapping="[description]">r.description as description</select>
+            <select mapping="[description]"
+                    normalize="T(com.github.iryabov.readingroom.service.UiUtilsKt).shorten(#this, 450)">r.description as description</select>
         </field>
         <field id="book.id">
             <select mapping="[book_id]">r.book_id as book_id</select>
