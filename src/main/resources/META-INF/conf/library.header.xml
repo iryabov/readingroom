@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <header xmlns="http://n2oapp.net/framework/config/schema/header-2.0"
+        xmlns:sec="http://n2oapp.net/framework/config/schema/security-1.0"
         brand-name="Books" home-page-url="/#/">
     <nav>
         <page page-id="library" label="${library}" route="/library"/>
-        <page page-id="members" label="${readers}" route="/readers"/>
+        <page page-id="members" label="${readers}" route="/readers" sec:roles="admin"/>
     </nav>
     <extra-menu>
         <page label="#{name}" page-id="profile" icon="fa fa-user"/>

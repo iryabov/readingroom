@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+      xmlns:sec="http://n2oapp.net/framework/config/schema/security-1.0"
       name="{title}">
     <regions>
         <form id="book" query-id="bookCard" object-id="book">
@@ -42,7 +43,8 @@
                                         closable="true">
                             </show-modal>
                         </button>
-                        <button id="edit" label="${edit}" color="primary">
+                        <button id="edit" label="${edit}" color="primary"
+                                sec:roles="admin">
                             <open-page page-id="bookForm"
                                        upload="query"
                                        submit-operation-id="saveBook"
@@ -50,7 +52,8 @@
                                        page-name="${edit}"/>
                         </button>
                         <button id="deleteBook" label="${delete}" color="danger"
-                                confirm="true">
+                                confirm="true"
+                                sec:roles="admin">
                             <invoke operation-id="deleteBook"
                                     close-on-success="true"
                                     refresh-on-success="true"/>

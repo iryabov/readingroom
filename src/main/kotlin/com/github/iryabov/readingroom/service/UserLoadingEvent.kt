@@ -31,6 +31,6 @@ class UserLoadingEvent {
         )
         context.set(attributes)
         context.set("userId", userId)
-        context.set("roles", if (admins.contains(email)) listOf("admin") else emptyList())
+        context.set("roles", if (admins.contains(email)) listOf("admin") else listOf("user"))
     }
 }
