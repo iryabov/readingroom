@@ -16,6 +16,54 @@
                 </row>
             </fields>
         </form>
+        <panel header="false" title="${rentedBooks}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${rentedBooks}</text>
+                    </row>
+                </fields>
+            </form>
+            <cards id="rented" route="/rented"
+                   query-id="booking" height="250">
+                <content>
+                    <col size="2">
+                        <block>
+                            <image data="{book.cover}"/>
+                        </block>
+                    </col>
+                    <col size="3">
+                        <block text-field-id="book.title">
+                            <link class="font-weight-bold"/>
+                        </block>
+                        <block text-field-id="book.authors">
+                            <text/>
+                        </block>
+                    </col>
+                    <col size="5">
+                        <block text-field-id="period">
+                            <text class="text-muted"/>
+                        </block>
+                    </col>
+                    <col size="2">
+                        <block text-field-id="daysBeforeReturning">
+                            <text class="h2 {(7>daysBeforeReturning?'text-danger':'')}" visible="{0>=daysBeforeRenting}"/>
+                        </block>
+                        <block>
+                            <badge text="days left" visible="{0>=daysBeforeRenting}"/>
+                        </block>
+                        <block text-field-id="status">
+                            <badge class="text-uppercase" color="{statusColor}">
+                            </badge>
+                        </block>
+                    </col>
+                </content>
+                <pre-filters>
+                    <eq field-id="member.id" value="#{userId}"/>
+                    <more field-id="until" value="{moment().format('YYYY-MM-DD')}" ref-widget-id="booking"/>
+                </pre-filters>
+            </cards>
+        </panel>
         <panel header="false" title="${myFavoriteBooks}" collapsible="false">
             <form>
                 <fields>

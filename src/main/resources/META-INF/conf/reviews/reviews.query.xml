@@ -12,7 +12,7 @@
             limit :limit offset :offset
         </sql>
     </list>
-    <count count-mapping="[0].cnt">
+    <count count-mapping="[0][cnt]">
         <sql>
             select count(*) as cnt
             from review r

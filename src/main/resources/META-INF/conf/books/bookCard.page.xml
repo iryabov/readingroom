@@ -171,9 +171,9 @@
                     </pre-filters>
                 </cards>
             </tab>
-            <tab id="booking" name="${readingNow}">
-                <cards id="booking" route="/theyReadingNow"
-                       query-id="booking" height="100px" >
+            <tab id="booking" name="${booking}">
+                <cards id="booking" route="/booking"
+                       query-id="booking" height="120px" >
                     <content>
                         <col size="2">
                             <block>
@@ -184,13 +184,19 @@
                             </block>
                         </col>
                         <col size="8">
-                            <block text-field-id="period" >
-                                <text class="font-weight-bold"/>
+                            <block text-field-id="period">
+                                <text class="text-muted"/>
                             </block>
                         </col>
                         <col size="2">
+                            <block text-field-id="daysBeforeReturning">
+                                <text class="h2 {(7>daysBeforeReturning?'text-danger':'')}" visible="{0>=daysBeforeRenting}"/>
+                            </block>
+                            <block>
+                                <badge text="days left" visible="{0>=daysBeforeRenting}"/>
+                            </block>
                             <block text-field-id="status">
-                                <badge class="text-uppercase" color="success">
+                                <badge class="text-uppercase" color="{statusColor}">
                                 </badge>
                             </block>
                         </col>
@@ -203,7 +209,7 @@
             </tab>
             <tab id="wantToRead" name="${wantToRead}">
                 <cards id="wantToRead" route="/theyWantToRead"
-                       query-id="wantToRead" height="100px">
+                       query-id="wantToRead" height="120px">
                     <content>
                         <col size="2">
                             <block>
@@ -223,7 +229,7 @@
             </tab>
             <tab id="haveRead" name="${haveRead}">
                 <cards id="haveRead" route="/theyHaveRead"
-                       query-id="haveRead" height="100px">
+                       query-id="haveRead" height="120px">
                     <content>
                         <col size="2">
                             <block>
