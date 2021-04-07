@@ -6,6 +6,7 @@
               (select avg(r.rate) from rating r where r.book_id = b.id) as rating,
               (select count(*) from wanttoread wr where wr.book_id = b.id) as wanttoread,
               (select count(*) from haveread hr where hr.book_id = b.id) as haveread,
+              (select r.rate from rating r where r.book_id = b.id and r.member_id = :user_id) as memberRating,
               b.id as id,
               b.title as title,
               array_to_string(b.authors, ', ', '*') as authors,
@@ -76,11 +77,23 @@
             <select mapping="[status]"
                     normalize="T(com.github.iryabov.readingroom.entity.BookStatus).valueOf(#this).color"/>
         </field>
-        <field id="memberWantToRead">
+        <field id="memberWantToRead" domain="boolean">
             <select mapping="[memberWantToRead]"/>
+            <filters>
+                <eq filter-id="memberWantToRead">exists (select * from wanttoread wr where wr.book_id = b.id and wr.member_id = :user_id)</eq>
+            </filters>
         </field>
-        <field id="memberHaveRead">
+        <field id="memberHaveRead" domain="boolean">
             <select mapping="[memberHaveRead]"/>
+            <filters>
+                <eq filter-id="memberHaveRead">exists (select * from haveread hr where hr.book_id = b.id and hr.member_id = :user_id)</eq>
+            </filters>
+        </field>
+        <field id="memberRating" domain="integer">
+            <select mapping="[memberRating]"/>
+            <filters>
+                <eq filter-id="memberRating" domain="boolean">exists (select r.rate from rating r where r.book_id = b.id and r.member_id = :user_id)</eq>
+            </filters>
         </field>
         <field id="categories">
             <filters>

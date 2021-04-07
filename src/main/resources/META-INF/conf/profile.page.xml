@@ -16,5 +16,56 @@
                 </row>
             </fields>
         </form>
+        <panel header="false" title="${myFavoriteBooks}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${myFavoriteBooks}</text>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="myFavoriteBooks" ref-id="myshelf"
+                   route="/favorite"
+                   query-id="books?sort=4"
+                   size="6">
+                <pre-filters>
+                    <eq field-id="memberRating" value="true"/>
+                </pre-filters>
+            </tiles>
+        </panel>
+        <panel header="false" title="${iWantToRead}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${iWantToRead}</text>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="iWantToRead" ref-id="myshelf"
+                   route="/want"
+                   query-id="books?sort=1"
+                   size="6">
+                <pre-filters>
+                    <eq field-id="memberWantToRead" value="true"/>
+                </pre-filters>
+            </tiles>
+        </panel>
+        <panel header="false" title="${iHaveRead}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${iHaveRead}</text>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="iHaveRead" ref-id="myshelf"
+                   route="/have"
+                   query-id="books?sort=1"
+                   size="6">
+                <pre-filters>
+                    <eq field-id="memberHaveRead" value="true"/>
+                </pre-filters>
+            </tiles>
+        </panel>
     </regions>
 </page>

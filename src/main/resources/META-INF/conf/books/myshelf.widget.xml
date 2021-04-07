@@ -14,7 +14,7 @@
             <image data="{cover}" action-id="view">
             </image>
         </block>
-        <block text-field-id="rating">
+        <block text-field-id="memberRating">
             <rating half="true"/>
         </block>
         <block text-field-id="title">
