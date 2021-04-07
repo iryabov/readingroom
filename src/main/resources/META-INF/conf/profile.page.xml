@@ -25,7 +25,7 @@
                 </fields>
             </form>
             <cards id="rented" route="/rented"
-                   query-id="booking" height="250">
+                   query-id="booking" height="250" size="5">
                 <content>
                     <col size="2">
                         <block>
@@ -34,20 +34,18 @@
                     </col>
                     <col size="3">
                         <block text-field-id="book.title">
-                            <link class="font-weight-bold"/>
-                        </block>
-                        <block text-field-id="book.authors">
-                            <text/>
-                        </block>
-                    </col>
-                    <col size="5">
-                        <block text-field-id="period">
-                            <text class="text-muted"/>
+                            <text class="font-weight-bold" subtext-field-id="book.authors"/>
                         </block>
                     </col>
                     <col size="2">
+                        <block text-field-id="period">
+                            <text/>
+                        </block>
+                    </col>
+                    <col size="4">
                         <block text-field-id="daysBeforeReturning">
-                            <text class="h2 {(7>daysBeforeReturning?'text-danger':'')}" visible="{0>=daysBeforeRenting}"/>
+                            <text class="h2 {(7>daysBeforeReturning?'text-danger':'')}"
+                                  visible="{0>=daysBeforeRenting}"/>
                         </block>
                         <block>
                             <badge text="days left" visible="{0>=daysBeforeRenting}"/>
@@ -57,10 +55,86 @@
                             </badge>
                         </block>
                     </col>
+                    <col size="1">
+                        <block>
+                            <toolbar>
+                                <button id="delete"
+                                        label="${deleteBooking}" icon="fa fa-trash" color="light" type="icon"
+                                        confirm="true">
+                                    <invoke operation-id="deleteBooking" route="/booking/delete"/>
+                                </button>
+                            </toolbar>
+                        </block>
+                    </col>
                 </content>
                 <pre-filters>
                     <eq field-id="member.id" value="#{userId}"/>
                     <more field-id="until" value="{moment().format('YYYY-MM-DD')}" ref-widget-id="booking"/>
+                </pre-filters>
+            </cards>
+        </panel>
+        <panel header="false" title="${myReviews}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${myReviews}</text>
+                    </row>
+                </fields>
+            </form>
+            <cards id="review" route="/reviews"
+                   query-id="reviews" height="250" size="5">
+                <content>
+                    <col size="2">
+                        <block>
+                            <image data="{book.cover}"/>
+                        </block>
+                    </col>
+                    <col size="3">
+                        <block text-field-id="book.fullTitle">
+                            <text class="font-weight-bold" subtext-field-id="book.authors"/>
+                        </block>
+                    </col>
+                    <col size="2">
+                        <block text-field-id="rating">
+                            <rating half="true" show-tooltip="true"/>
+                        </block>
+                        <block text-field-id="createdAt">
+                            <text format="date ${dateFormat}"/>
+                        </block>
+                    </col>
+                    <col size="4">
+                        <block text-field-id="description">
+                            <text/>
+                        </block>
+                    </col>
+                    <col size="1">
+                        <block>
+                            <toolbar>
+                                <button id="edit"
+                                        label="${editReview}" icon="fa fa-pencil" color="light" type="icon">
+                                    <show-modal page-id="reviewForm"
+                                                route="/:review_id/edit"
+                                                upload="query"
+                                                page-name="${editingReview}"
+                                                closable="true">
+                                        <path-param name="review_id" value="{id}"/>
+                                    </show-modal>
+                                </button>
+                            </toolbar>
+                        </block>
+                        <block>
+                            <toolbar>
+                                <button id="delete"
+                                        label="${deleteReview}" icon="fa fa-trash" color="light" type="icon"
+                                        confirm="true">
+                                    <invoke operation-id="deleteReview" route="/review/delete"/>
+                                </button>
+                            </toolbar>
+                        </block>
+                    </col>
+                </content>
+                <pre-filters>
+                    <eq field-id="member.id" value="#{userId}"/>
                 </pre-filters>
             </cards>
         </panel>
@@ -114,69 +188,6 @@
                     <eq field-id="memberHaveRead" value="true"/>
                 </pre-filters>
             </tiles>
-        </panel>
-        <panel header="false" title="${myReviews}" collapsible="false">
-            <form>
-                <fields>
-                    <row>
-                        <text id="title" class="h5">${myReviews}</text>
-                    </row>
-                </fields>
-            </form>
-            <cards id="review" route="/reviews"
-                   query-id="reviews" height="250">
-                <content>
-                    <col size="2">
-                        <block>
-                            <image data="{book.cover}"/>
-                        </block>
-                    </col>
-                    <col size="3">
-                        <block text-field-id="book.title">
-                            <link class="font-weight-bold"/>
-                        </block>
-                        <block text-field-id="book.authors">
-                            <text/>
-                        </block>
-                        <block text-field-id="rating">
-                            <rating half="true" show-tooltip="true"/>
-                        </block>
-                    </col>
-                    <col size="6">
-                        <block text-field-id="description">
-                            <text/>
-                        </block>
-                    </col>
-                    <col size="1">
-                        <block>
-                            <toolbar>
-                                <button id="edit"
-                                        label="${editReview}" icon="fa fa-pencil" color="light" type="icon">
-                                    <show-modal page-id="reviewForm"
-                                                route="/:review_id/edit"
-                                                upload="query"
-                                                page-name="${editingReview}"
-                                                closable="true">
-                                        <path-param name="review_id" value="{id}"/>
-                                    </show-modal>
-                                </button>
-                            </toolbar>
-                        </block>
-                        <block>
-                            <toolbar>
-                                <button id="delete"
-                                        label="${deleteReview}" icon="fa fa-trash" color="light" type="icon"
-                                        confirm="true">
-                                    <invoke operation-id="deleteReview"/>
-                                </button>
-                            </toolbar>
-                        </block>
-                    </col>
-                </content>
-                <pre-filters>
-                    <eq field-id="member.id" value="#{userId}"/>
-                </pre-filters>
-            </cards>
         </panel>
     </regions>
 </page>

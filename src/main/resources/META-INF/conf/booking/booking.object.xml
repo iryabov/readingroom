@@ -19,6 +19,20 @@
             </in>
             <validations white-list="alreadyBooked"/>
         </operation>
+
+        <operation id="deleteBooking">
+            <invocation>
+                <java method="deleteById" class="com.github.iryabov.readingroom.repository.BookingRepository">
+                    <spring/>
+                    <arguments>
+                        <argument name="id" type="primitive"/>
+                    </arguments>
+                </java>
+            </invocation>
+            <in>
+                <field id="id" mapping="[0]"/>
+            </in>
+        </operation>
         
     </operations>
     

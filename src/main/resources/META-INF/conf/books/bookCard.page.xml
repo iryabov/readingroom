@@ -154,7 +154,7 @@
                                 <image data="{member.avatar}" shape="circle" width="50"/>
                             </block>
                             <block text-field-id="member.name">
-                                <text subtext-field-id="createdAt" subtext-format="date DD.MM.YYYY"/>
+                                <text subtext-field-id="createdAt" subtext-format="date ${dateFormat}"/>
                             </block>
                             <block text-field-id="rating">
                                 <rating/>
