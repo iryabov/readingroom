@@ -1,4 +1,29 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <page xmlns="http://n2oapp.net/framework/config/schema/page-3.0">
-
+    <regions>
+        <panel header="false" title="${bestReviewers}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${bestReviewers}</text>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="bestReviewers" ref-id="readers"
+                   route="/reviewers">
+            </tiles>
+        </panel>
+        <panel header="false" title="${bestReaders}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${bestReaders}</text>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="bestReaders" ref-id="readers"
+                   route="/readers">
+            </tiles>
+        </panel>
+    </regions>
 </page>

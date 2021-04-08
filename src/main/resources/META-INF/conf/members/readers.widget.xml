@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tiles xmlns="http://n2oapp.net/framework/config/schema/n2o-widget-4.0"
+       route="/new"
+       query-id="readers"
+       size="6">
+    <content>
+        <block>
+            <image data="{avatar}"/>
+        </block>
+        <block text-field-id="name">
+            <text subtext-field-id="email"/>
+        </block>
+        <block text-field-id="wantToRead">
+            <icon icon="fa fa-heart" type="iconAndText"/>
+        </block>
+        <block text-field-id="haveRead">
+            <icon icon="fa fa-bookmark" type="iconAndText"/>
+        </block>
+        <block text-field-id="reviews">
+            <icon icon="fa fa-comment" type="iconAndText"/>
+        </block>
+        <block text-field-id="booked">
+            <icon icon="fa fa-book" type="iconAndText"/>
+        </block>
+    </content>
+    <pre-filters>
+    </pre-filters>
+</tiles>

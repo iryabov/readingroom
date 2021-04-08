@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
+       object-id="member">
+    <list>
+        <sql>
+            select
+                (select count(*) from haveread hr where hr.member_id = m.id) as have_read,
+                (select count(*) from wanttoread wr where wr.member_id = m.id) as want_to_read,
+                (select count(*) from review v where v.member_id = m.id) as reviews,
+                (select count(*) from booking k where k.member_id = m.id and k.booking_until >= current_date) as booked,
+                m.id as id,
+                m.email as email,
+                m.name as name,
+                m.avatar as avatar
+            from member m
+            where :filters
+        </sql>
+    </list>
+    <count count-mapping="[0][cnt]">
+        <sql>
+            select count(*) as cnt
+            from member m
+            where :filters
+        </sql>
+    </count>
+    <fields>
+        <field id="id" domain="integer">
+            <select mapping="['id']"/>
+            <filters>
+                <eq filter-id="id">m.id = :id</eq>
+            </filters>
+        </field>
+        <field id="email">
+            <select mapping="['email']"/>
+            <filters>
+                <eq filter-id="email">m.email = :email</eq>
+            </filters>
+        </field>
+        <field id="name">
+            <select mapping="['name']"/>
+            <filters>
+                <like filter-id="name" mapping="[name]"
+                      normalize="toLowerCase()">lower(m.name)||m.email like '%'||:name||'%'</like>
+            </filters>
+        </field>
+        <field id="avatar">
+            <select mapping="['avatar']"/>
+        </field>
+        <field id="haveRead">
+            <select mapping="['have_read']"/>
+        </field>
+        <field id="wantToRead">
+            <select mapping="['want_to_read']"/>
+        </field>
+        <field id="reviews">
+            <select mapping="['reviews']"/>
+        </field>
+        <field id="booked">
+            <select mapping="['booked']"/>
+        </field>
+    </fields>
+</query>

@@ -7,7 +7,7 @@
         <a href="/#/catalog/new?status=AVAILABLE" label="${newBooks}"/>
         <a href="/#/catalog/requested?status=NOT_AVAILABLE" label="${mostRequested}"/>
         <a href="/#/catalog/read" label="${mostRead}"/>
-        <page page-id="members" label="${readers}" route="/readers" sec:roles="admin"/>
+        <page page-id="readers" label="${readers}" route="/readers"/>
     </nav>
     <extra-menu>
         <page label="#{name}" page-id="profile" icon="fa fa-user"/>
