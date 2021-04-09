@@ -1,6 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0">
+<page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
+      name="${readers}">
     <regions>
+        <panel header="false" title="${readingNow}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${readingNow}</text>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="readingNow" route="/booking"
+                   query-id="booking"
+                   cols-lg="6"
+                   size="6"
+                   height="220">
+                <actions>
+                    <action id="view">
+                        <open-page page-id="bookCard" route="/:book_id/view" object-id="book">
+                            <path-param name="book_id" value="{book.id}"/>
+                            <query-param name="booking_id" value="{id}"/>
+                        </open-page>
+                    </action>
+                </actions>
+                <content>
+                    <block>
+                        <image data="{member.avatar}"
+                               width="32" shape="circle"
+                               title="{member.name}"/>
+                    </block>
+                    <block>
+                        <image data="{book.cover}" width="128" action-id="view"/>
+                    </block>
+                    <block text-field-id="book.title">
+                        <link action-id="view">
+                        </link>
+                    </block>
+                </content>
+                <pre-filters>
+                    <eq field-id="status" value="rented"/>
+                </pre-filters>
+            </tiles>
+        </panel>
         <panel header="false" title="${bestReviewers}" collapsible="false">
             <form>
                 <fields>
@@ -9,20 +50,25 @@
                     </row>
                 </fields>
             </form>
-            <tiles id="bestReviewers" ref-id="readers"
-                   route="/reviewers">
-            </tiles>
-        </panel>
-        <panel header="false" title="${bestReaders}" collapsible="false">
-            <form>
-                <fields>
-                    <row>
-                        <text id="title" class="h5">${bestReaders}</text>
-                    </row>
-                </fields>
-            </form>
-            <tiles id="bestReaders" ref-id="readers"
-                   route="/readers">
+            <tiles id="bestReviewers" route="/reviewers"
+                   query-id="readers?sort=1 desc"
+                   cols-lg="6"
+                   size="6"
+                   height="220">
+                <content>
+                    <block>
+                        <image data="{avatar}"/>
+                    </block>
+                    <block text-field-id="name">
+                        <text/>
+                    </block>
+                    <block text-field-id="reviews">
+                        <icon icon="fa fa-comment" type="iconAndText"/>
+                    </block>
+                </content>
+                <pre-filters>
+                    <eq field-id="reviews" value="true"/>
+                </pre-filters>
             </tiles>
         </panel>
     </regions>

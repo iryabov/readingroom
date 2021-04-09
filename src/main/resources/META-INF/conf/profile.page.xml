@@ -48,7 +48,7 @@
                                   visible="{0>=daysBeforeRenting}"/>
                         </block>
                         <block>
-                            <badge text="days left" visible="{0>=daysBeforeRenting}"/>
+                            <badge text="${daysLeft}" visible="{0>=daysBeforeRenting}"/>
                         </block>
                         <block text-field-id="status">
                             <badge class="text-uppercase" color="{statusColor}">

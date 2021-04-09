@@ -19,9 +19,6 @@
         </block>
         <block text-field-id="title">
             <link action-id="view">
-                <!--                        <open-page page-id="bookCard" route="/:book_id/view" object-id="book">-->
-                <!--                            <path-param name="book_id" value="{id}"/>-->
-                <!--                        </open-page>-->
             </link>
         </block>
         <block>

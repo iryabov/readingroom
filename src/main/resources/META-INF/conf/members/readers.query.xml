@@ -2,18 +2,21 @@
 <query xmlns="http://n2oapp.net/framework/config/schema/query-4.0"
        object-id="member">
     <list>
-        <sql>
+        <sql><![CDATA[
             select
-                (select count(*) from haveread hr where hr.member_id = m.id) as have_read,
-                (select count(*) from wanttoread wr where wr.member_id = m.id) as want_to_read,
                 (select count(*) from review v where v.member_id = m.id) as reviews,
                 (select count(*) from booking k where k.member_id = m.id and k.booking_until >= current_date) as booked,
+                (select count(*) from booking k where k.member_id = m.id and k.booking_from <= current_date and k.booking_until >= current_date) as taken,
+                (select count(*) from haveread hr where hr.member_id = m.id) as have_read,
+                (select count(*) from wanttoread wr where wr.member_id = m.id) as want_to_read,
                 m.id as id,
                 m.email as email,
                 m.name as name,
                 m.avatar as avatar
             from member m
             where :filters
+            order by ${sort}
+        ]]>
         </sql>
     </list>
     <count count-mapping="[0][cnt]">
@@ -54,9 +57,20 @@
         </field>
         <field id="reviews">
             <select mapping="['reviews']"/>
+            <filters>
+                <eq filter-id="review">exists (select v.id from review v where v.member_id = m.id)</eq>
+            </filters>
         </field>
         <field id="booked">
             <select mapping="['booked']"/>
+        </field>
+        <field id="taken">
+            <select mapping="['taken']"/>
+            <filters>
+                <eq filter-id="taken"><![CDATA[
+                exists (select k.id from booking k where k.member_id = m.id and k.booking_from <= current_date and k.booking_until >= current_date)
+                ]]></eq>
+            </filters>
         </field>
     </fields>
 </query>
