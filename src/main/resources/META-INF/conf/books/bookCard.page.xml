@@ -208,44 +208,36 @@
                 </cards>
             </tab>
             <tab id="wantToRead" name="${wantToRead}">
-                <cards id="wantToRead" route="/theyWantToRead"
+                <list id="wantToRead" route="/theyWantToRead"
                        query-id="wantToRead" height="120px">
                     <content>
-                        <col size="2">
-                            <block>
-                                <image data="{member.avatar}" shape="circle" width="50"/>
-                            </block>
-                        </col>
-                        <col size="10">
-                            <block text-field-id="member.name">
-                                <text/>
-                            </block>
-                        </col>
+                        <left-top>
+                            <image data="{member.avatar}" shape="circle" width="50"/>
+                        </left-top>
+                        <body text-field-id="member.name">
+                            <text/>
+                        </body>
                     </content>
                     <pre-filters>
                         <eq field-id="book.id" param="book_id"/>
                     </pre-filters>
-                </cards>
+                </list>
             </tab>
             <tab id="haveRead" name="${haveRead}">
-                <cards id="haveRead" route="/theyHaveRead"
+                <list id="haveRead" route="/theyHaveRead"
                        query-id="haveRead" height="120px">
                     <content>
-                        <col size="2">
-                            <block>
-                                <image data="{member.avatar}" shape="circle" width="50"/>
-                            </block>
-                        </col>
-                        <col size="10">
-                            <block text-field-id="member.name">
-                                <text/>
-                            </block>
-                        </col>
+                        <left-top>
+                            <image data="{member.avatar}" shape="circle" width="50"/>
+                        </left-top>
+                        <body text-field-id="member.name">
+                            <text/>
+                        </body>
                     </content>
                     <pre-filters>
                         <eq field-id="book.id" param="book_id"/>
                     </pre-filters>
-                </cards>
+                </list>
             </tab>
         </tabs>
     </regions>
