@@ -16,11 +16,11 @@
                 </row>
             </fields>
         </form>
-        <panel header="false" title="${rentedBooks}" collapsible="false">
+        <panel header="false" title="${myBooking}" collapsible="false">
             <form>
                 <fields>
                     <row>
-                        <text id="title" class="h5">${rentedBooks}</text>
+                        <text id="title" class="h5">${myBooking}</text>
                     </row>
                 </fields>
             </form>

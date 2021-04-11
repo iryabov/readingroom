@@ -25,7 +25,7 @@ n2o:
     button:
       disable_on_empty_model: false
   i18n:
-    default-locale: en
+    default-locale: ru
   header.id: library
   config:
     monitoring:
