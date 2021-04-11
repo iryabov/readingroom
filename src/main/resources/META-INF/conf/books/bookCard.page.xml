@@ -13,7 +13,7 @@
                                 <image id="coverImg" data="{cover}"/>
                             </controls>
                         </field>
-                        <rating id="memberRating" no-label-block="true" label="Your rate" half="true">
+                        <rating id="memberRating" no-label-block="true" label="Your rate" half="true" description="${yourRating}">
                             <submit operation-id="rateBook" route="/rate" message-on-success="false">
                                 <form-param id="rate" value="{memberRating}"/>
                             </submit>
@@ -35,7 +35,7 @@
                         <button id="haveNotRead" label="${haveRead}" icon="fa fa-bookmark" visible="{memberHaveRead}">
                             <invoke operation-id="haveNotRead" route="/haveNotRead" message-on-success="false"/>
                         </button>
-                        <button id="takeRead" label="${takeRead}" color="success" visible="{status=='Available'}">
+                        <button id="takeRead" label="${takeRead}" color="success" visible="{status=='AVAILABLE'}">
                             <show-modal page-id="bookingForm"
                                         route="/add"
                                         upload="defaults"
@@ -66,9 +66,9 @@
                                     <text id="titleTxt" class="h2">{title}</text>
                                 </col>
                                 <col size="2">
-                                    <field id="status" class="pull-right" no-label-block="true">
+                                    <field id="statusLocalized" class="pull-right" no-label-block="true">
                                         <controls>
-                                            <output-text id="status" no-label-block="true"
+                                            <output-text id="statusLocalized" no-label-block="true"
                                                          class="`'text-uppercase badge badge-' + statusColor`"/>
                                         </controls>
                                     </field>
