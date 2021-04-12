@@ -4,18 +4,21 @@
     <operations>
         <operation id="saveReview" submit-label="${publish}">
             <invocation>
-                <java method="save" class="com.github.iryabov.readingroom.repository.ReviewRepository">
+                <java method="saveReview" class="com.github.iryabov.readingroom.service.BookService">
                     <spring/>
                     <arguments>
-                        <argument name="entity" type="entity"/>
+                        <argument name="bookId" type="primitive"/>
+                        <argument name="memberId" type="primitive"/>
+                        <argument name="rating" type="primitive"/>
+                        <argument name="description" type="primitive"/>
                     </arguments>
                 </java>
             </invocation>
             <in>
-                <field id="id" mapping="id"/>
-                <field id="book.id" mapping="book.id"/>
-                <field id="member.id" mapping="member.id" domain="integer" default-value="#{userId}"/>
-                <field id="description" mapping="description"/>
+                <field id="book.id" mapping="[0]"/>
+                <field id="member.id" mapping="[1]" domain="integer" default-value="#{userId}"/>
+                <field id="rating" mapping="[2]"/>
+                <field id="description" mapping="[3]"/>
             </in>
         </operation>
         <operation id="deleteReview">

@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "rating", uniqueConstraints = [UniqueConstraint(name = "rating_book_member_unique", columnNames = [ "book_id", "member_id" ])])
-class Rating(
+data class Rating(
         @ManyToOne
         var book: Book,
         @ManyToOne
@@ -14,4 +14,6 @@ class Rating(
         var createdAt: LocalDate = LocalDate.now(),
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null
-)
+) {
+        constructor(): this(Book(), Member(), 0)
+}

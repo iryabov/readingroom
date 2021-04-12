@@ -49,7 +49,7 @@
             <select mapping="[language]">b.language as language</select>
         </field>
         <field id="languageLocalized">
-            <select mapping="[language]" normalize="@n2oMessageSourceAccessor.getMessage(#this.toLowerCase())"/>
+            <select mapping="[language]" normalize="#this != null ? @n2oMessageSourceAccessor.getMessage(#this.toLowerCase()) : null"/>
         </field>
         <field id="createdBy">
             <select mapping="[created_by_name]" default-value="#{name}">(select m.name from member m where m.id = b.created_by) as created_by_name</select>
@@ -74,7 +74,7 @@
         </field>
 
         <field id="memberRating">
-            <select mapping="[memberRating]">(select r.rate from rating r where book_id = b.id and member_id = :user_id) as memberRating</select>
+            <select mapping="[memberRating]">(select round(r.rate) from rating r where book_id = b.id and member_id = :user_id) as memberRating</select>
         </field>
         <field id="memberWantToRead">
             <select mapping="[memberWantToRead]">exists (select * from wanttoread wr where book_id = b.id and wr.member_id = :user_id) as memberWantToRead</select>
@@ -83,7 +83,7 @@
             <select mapping="[memberHaveRead]">exists (select * from haveread hr where book_id = b.id and hr.member_id = :user_id) as memberHaveRead</select>
         </field>
         <field id="rating">
-            <select mapping="[rating]">(select avg(r.rate) from rating r where r.book_id = b.id) as rating</select>
+            <select mapping="[rating]">(select round(avg(r.rate), 1) from rating r where r.book_id = b.id) as rating</select>
         </field>
         <field id="wanttoread">
             <select mapping="[wanttoread]">(select count(*) from wanttoread wr where wr.book_id = b.id) as wanttoread</select>

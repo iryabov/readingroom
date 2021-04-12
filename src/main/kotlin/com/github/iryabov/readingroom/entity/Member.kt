@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "member")
-class Member(
+data class Member(
         var name: String,
         var email: String,
         @Column(name = "avatar", columnDefinition = "text")

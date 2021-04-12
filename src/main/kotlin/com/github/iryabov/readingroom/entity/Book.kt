@@ -12,7 +12,7 @@ import javax.persistence.*
         name = "list-array",
         typeClass = ListArrayType::class
 )
-class Book(
+data class Book(
         var title: String,
         @Type(type = "list-array")
         @Column(name = "authors", columnDefinition = "varchar[]")
@@ -32,6 +32,7 @@ class Book(
         @JoinColumn(name = "created_by")
         var createdBy: Member? = null,
         var createdAt: LocalDate? = LocalDate.now(),
+        var availableDate: LocalDate? = null,
         var pagecount: Int? = null,
         @Column(name = "preview_url", columnDefinition = "text")
         var previewUrl: String? = null,

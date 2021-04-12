@@ -21,6 +21,7 @@
 			<column name="created_at" prior="added_at" type="date" jt="91" mandatory="y" >
 				<comment><![CDATA[Date added to library]]></comment>
 			</column>
+			<column name="available_date" type="date" jt="91" />
 			<column name="pagecount" type="integer" jt="4" />
 			<column name="preview_url" type="varchar" jt="12" />
 			<column name="status" prior="status_id" type="varchar" length="10" jt="12" mandatory="y" >

@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "review")
-class Review(
+data class Review(
         @ManyToOne
         var book: Book,
         @ManyToOne
