@@ -13,7 +13,7 @@
                                 <image id="coverImg" data="{cover}"/>
                             </controls>
                         </field>
-                        <rating id="memberRating" no-label-block="true" label="Your rate" half="true" description="${yourRating}">
+                        <rating id="memberRating" no-label-block="true" label="Your rate" half="false" description="${yourRating}">
                             <submit operation-id="rateBook" route="/rate" message-on-success="false">
                                 <form-param id="rate" value="{memberRating}"/>
                             </submit>
@@ -91,7 +91,7 @@
                         </set>
                         <set>
                             <row>
-                                <col size="1">
+                                <col size="1" >
                                     <output-text id="rating" icon="fa fa-star" no-label-block="true" visible="{rating}"/>
                                 </col>
                                 <col size="1">

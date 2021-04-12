@@ -13,7 +13,8 @@
             </invocation>
             <in>
                 <field id="id" mapping="id" param="book_id"/>
-                <field id="member.id" mapping="createdBy.id" domain="integer" default-value="#{userId}"/>
+                <field id="createdBy.id" mapping="createdBy.id" domain="integer" default-value="#{userId}"/>
+                <field id="createdAt" mapping="createdAt" domain="localdate" default-value="T(java.time.LocalDate).now()"/>
                 <field id="cover.url" mapping="cover"/>
                 <field id="title" mapping="title"/>
                 <field id="authors" mapping="authors"/>
