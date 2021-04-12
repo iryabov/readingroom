@@ -8,7 +8,7 @@
                 <hidden id="name" default-value="#{name}"/>
                 <row>
                     <col size="1">
-                        <image data="{avatar}" shape="circle"/>
+                        <image data="{avatar}" shape="rounded"/>
                     </col>
                     <col size="11">
                         <text class="h1">${hello}, {name}</text>

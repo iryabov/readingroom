@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <header xmlns="http://n2oapp.net/framework/config/schema/header-2.0"
         xmlns:sec="http://n2oapp.net/framework/config/schema/security-1.0"
-        brand-name="Books" home-page-url="/#/">
+        brand-name="${books}" home-page-url="/#/" color="primary">
     <nav>
         <a href="#/catalog/all" label="${all}"/>
         <a href="/#/catalog/new?status=AVAILABLE" label="${newBooks}"/>
-        <a href="/#/catalog/requested?status=NOT_AVAILABLE" label="${mostRequested}"/>
         <a href="/#/catalog/read" label="${mostRead}"/>
+        <a href="/#/catalog/requested?status=NOT_AVAILABLE" label="${mostRequested}"/>
         <page page-id="readers" label="${readers}" route="/readers"/>
     </nav>
     <extra-menu>

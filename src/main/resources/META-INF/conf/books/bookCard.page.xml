@@ -83,7 +83,7 @@
                                         <field id="createdBy" class="pull-right" label-class="text-muted" label="${by}">
                                             <controls>
                                                 <output-text id="createdBy"/>
-                                            </controls>
+                                            </controls>4
                                         </field>
                                     </set>
                                 </col>
@@ -116,7 +116,7 @@
                                     <output-text id="published" label="${published}"/>
                                 </col>
                                 <col>
-                                    <output-text id="language" label="${language}"/>
+                                    <output-text id="languageLocalized" label="${language}"/>
                                     <output-text id="pageCount" label="${pageCount}"/>
                                 </col>
                             </row>
@@ -190,10 +190,10 @@
                         </col>
                         <col size="2">
                             <block text-field-id="daysBeforeReturning">
-                                <text class="h2 {(7>daysBeforeReturning?'text-danger':'')}" visible="{0>=daysBeforeRenting}"/>
+                                <text class="h2 {(1>daysBeforeReturning?'text-danger':'')}" visible="{0>=daysBeforeRenting}"/>
                             </block>
                             <block>
-                                <badge text="days left" visible="{0>=daysBeforeRenting}"/>
+                                <badge text="${daysLeft}" visible="{0>=daysBeforeRenting}"/>
                             </block>
                             <block text-field-id="status">
                                 <badge class="text-uppercase" color="{statusColor}">

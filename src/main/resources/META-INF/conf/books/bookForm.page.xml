@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <page xmlns="http://n2oapp.net/framework/config/schema/page-3.0"
-      name="${addBook}">
+      xmlns:sec="http://n2oapp.net/framework/config/schema/security-1.0"
+      name="${addBook}" >
     <regions>
         <form object-id="book" query-id="bookForm">
             <fields>
@@ -58,8 +59,8 @@
                     </input-text>
                     <radio-group id="language" label="${language}" inline="true">
                         <options>
-                            <option id="EN" name="${english}"/>
-                            <option id="RU" name="${russian}"/>
+                            <option id="EN" name="${en}"/>
+                            <option id="RU" name="${ru}"/>
                         </options>
                     </radio-group>
                 </line>
@@ -79,17 +80,22 @@
                     <auto-complete id="categories" label="${categories}"
                                    tags="true" max-tag-text-length="30"
                                    query-id="categories" value-field-id="name" search-filter-id="name"/>
-                    <radio-group id="status" label="${status}" inline="true">
-                        <default-value id="AVAILABLE"/>
+                    <radio-group id="status" label="${status}" inline="true"
+                                 sec:roles="admin">
+                        <default-value id="NOT_AVAILABLE"/>
                         <options>
                             <option id="AVAILABLE" name="${available}"/>
                             <option id="NOT_AVAILABLE" name="${not_available}"/>
                         </options>
                     </radio-group>
                     <input-select id="createdBy" label="${createdBy}"
-                                  query-id="members" label-field-id="name" search-filter-id="name">
+                                  query-id="members" label-field-id="name" image-field-id="avatar"
+                                  search-filter-id="name"
+                                  sec:roles="admin">
+                        <default-value id="#{userId}" name="#{name}" avatar="#{picture}"/>
                     </input-select>
-                    <output-text id="createdAt" label="${createdAt}" visible="{createdAt}" format="date ${dateFormat}"/>
+                    <date-time id="createdAt" label="${createdAt}" date-format="${dateFormat}"
+                               sec:roles="admin" default-value="{$.today()}"/>
                 </line>
             </fields>
             <pre-filters>

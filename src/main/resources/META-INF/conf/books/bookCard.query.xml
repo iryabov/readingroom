@@ -48,6 +48,9 @@
         <field id="language">
             <select mapping="[language]">b.language as language</select>
         </field>
+        <field id="languageLocalized">
+            <select mapping="[language]" normalize="@n2oMessageSourceAccessor.getMessage(#this.toLowerCase())"/>
+        </field>
         <field id="createdBy">
             <select mapping="[created_by_name]" default-value="#{name}">(select m.name from member m where m.id = b.created_by) as created_by_name</select>
         </field>

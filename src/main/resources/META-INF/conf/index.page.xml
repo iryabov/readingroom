@@ -24,6 +24,25 @@
                 </pre-filters>
             </tiles>
         </panel>
+        <panel header="false" title="${mostRead}" collapsible="false">
+            <form>
+                <fields>
+                    <row>
+                        <text id="title" class="h5">${mostRead}</text>
+                        <button id="more" label="${more}" color="light" class="pull-right">
+                            <open-page page-id="library?sort=3" page-name="${mostRead}" route="/catalog/read"/>
+                        </button>
+                    </row>
+                </fields>
+            </form>
+            <tiles id="mostRead" ref-id="shelf"
+                   route="/read"
+                   query-id="books?sort=3"
+                   size="6">
+                <pre-filters>
+                </pre-filters>
+            </tiles>
+        </panel>
         <panel header="false" title="${mostRequested}" collapsible="false">
             <form>
                 <fields>
@@ -43,25 +62,6 @@
                    size="6">
                 <pre-filters>
                     <eq field-id="status" value="NOT_AVAILABLE"/>
-                </pre-filters>
-            </tiles>
-        </panel>
-        <panel header="false" title="${mostRead}" collapsible="false">
-            <form>
-                <fields>
-                    <row>
-                        <text id="title" class="h5">${mostRead}</text>
-                        <button id="more" label="${more}" color="light" class="pull-right">
-                            <open-page page-id="library?sort=3" page-name="${mostRead}" route="/catalog/read"/>
-                        </button>
-                    </row>
-                </fields>
-            </form>
-            <tiles id="mostRead" ref-id="shelf"
-                   route="/read"
-                   query-id="books?sort=3"
-                   size="6">
-                <pre-filters>
                 </pre-filters>
             </tiles>
         </panel>

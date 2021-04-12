@@ -57,7 +57,7 @@
                    height="220">
                 <content>
                     <block>
-                        <image data="{avatar}"/>
+                        <image data="{avatar}" shape="rounded"/>
                     </block>
                     <block text-field-id="name">
                         <text/>
