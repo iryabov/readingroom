@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ReviewRepository: CrudRepository<Review, Int> {
-    fun findByBookIdAndMemberId(bookId: Int, memberId: Int): Review
+    fun findByBookIdAndMemberId(bookId: Int, memberId: Int): Review?
 }

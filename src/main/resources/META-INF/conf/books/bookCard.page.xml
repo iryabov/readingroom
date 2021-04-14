@@ -18,24 +18,30 @@
                                 <form-param id="rate" value="{memberRating}"/>
                             </submit>
                         </rating>
-                        <button id="preview" label="${readSnippet}" icon="fa fa-book" visible="{previewUrl}">
-                            <a href="redirect::previewUrl" target="newWindow">
-                                <path-param name="previewUrl" value="{previewUrl}"/>
+                        <button id="preview" label="${readSnippet}" icon="fa fa-book" class="btn-block"
+                                visible="{previewUrl}">
+                            <a href="{previewUrl}" target="newWindow">
+<!--                                <path-param name="previewUrl" value="{previewUrl}"/>-->
                             </a>
                         </button>
-                        <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart-o" visible="{!memberWantToRead}">
+                        <button id="wantToRead" label="${wantToRead}" icon="fa fa-heart-o" class="btn-block"
+                                visible="{!memberWantToRead}">
                             <invoke operation-id="wantToRead" route="/wantToRead" message-on-success="false"/>
                         </button>
-                        <button id="doNotWantToRead" label="${wantToRead}" icon="fa fa-heart" visible="{memberWantToRead}">
+                        <button id="doNotWantToRead" label="${wantToRead}" icon="fa fa-heart" class="btn-block"
+                                visible="{memberWantToRead}">
                             <invoke operation-id="doNotWantToRead" route="/doNotWantToRead" message-on-success="false"/>
                         </button>
-                        <button id="haveRead" label="${haveRead}" icon="fa fa-bookmark-o" visible="{!memberHaveRead}">
+                        <button id="haveRead" label="${haveRead}" icon="fa fa-bookmark-o" class="btn-block"
+                                visible="{!memberHaveRead}">
                             <invoke operation-id="haveRead" route="/haveRead" message-on-success="false"/>
                         </button>
-                        <button id="haveNotRead" label="${haveRead}" icon="fa fa-bookmark" visible="{memberHaveRead}">
+                        <button id="haveNotRead" label="${haveRead}" icon="fa fa-bookmark" class="btn-block"
+                                visible="{memberHaveRead}">
                             <invoke operation-id="haveNotRead" route="/haveNotRead" message-on-success="false"/>
                         </button>
-                        <button id="takeRead" label="${takeRead}" color="success" visible="{status=='AVAILABLE'}">
+                        <button id="takeRead" label="${takeRead}" color="success" class="btn-block"
+                                visible="{status=='AVAILABLE'}">
                             <show-modal page-id="bookingForm"
                                         route="/add"
                                         upload="defaults"
@@ -43,7 +49,7 @@
                                         closable="true">
                             </show-modal>
                         </button>
-                        <button id="edit" label="${edit}" color="primary"
+                        <button id="edit" label="${edit}" color="primary" class="btn-block"
                                 sec:roles="admin">
                             <open-page page-id="bookForm"
                                        upload="query"
@@ -51,7 +57,7 @@
                                        route="/edit"
                                        page-name="${edit}"/>
                         </button>
-                        <button id="deleteBook" label="${delete}" color="danger"
+                        <button id="deleteBook" label="${delete}" color="danger" class="btn-block"
                                 confirm="true"
                                 sec:roles="admin">
                             <invoke operation-id="deleteBook"
@@ -146,6 +152,9 @@
                                         page-name="${addingReview}"
                                         closable="true">
                             </show-modal>
+                            <dependencies>
+                                <visibility ref-model="resolve" ref-widget-id="book">!memberReview</visibility>
+                            </dependencies>
                         </button>
                     </toolbar>
                     <content>

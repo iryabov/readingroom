@@ -18,8 +18,12 @@
                 <field id="book.id" mapping="[0]"/>
                 <field id="member.id" mapping="[1]" domain="integer" default-value="#{userId}"/>
                 <field id="rating" mapping="[2]"/>
-                <field id="description" mapping="[3]"/>
+                <field id="description" mapping="[3]" default-value=" "/>
             </in>
+            <validations>
+                <condition id="minLength" severity="danger" field-id="description"
+                           message="${validationMinLengthReview}">typeof description != 'undefined' &amp;&amp; description != null &amp;&amp; description.length >= 140</condition>
+            </validations>
         </operation>
         <operation id="deleteReview">
             <invocation>
